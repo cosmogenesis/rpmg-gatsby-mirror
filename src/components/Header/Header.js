@@ -17,6 +17,7 @@ import Drawer from "@material-ui/core/Drawer"
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu"
 // core components
+import SEO from "src/components/Seo"
 import styles from "src/assets/jss/material-kit-react/components/headerStyle.js"
 import { secondaryBgColor } from "src/assets/jss/material-kit-react"
 
@@ -57,7 +58,15 @@ export default function Header(props) {
         .classList.remove(classes[changeColorOnScroll.color])
     }
   }
-  const { color, rightLinks, leftLinks, brand, fixed, absolute } = props
+  const {
+    color,
+    rightLinks,
+    leftLinks,
+    fixed,
+    absolute,
+    pageTitle,
+    metadata,
+  } = props
   const appBarClasses = classNames({
     [classes.appBar]: true,
     [classes[color]]: color,
@@ -69,18 +78,20 @@ export default function Header(props) {
     <IconButton className="rpmg-logo-wrapper">
       <Hidden only={["xs"]}>
         <Link to="/" title="Go to Home page">
-          <img className="rpmg-logo-lg" src={logoLarge} alt={brand} />
+          <img className="rpmg-logo-lg" src={logoLarge} alt={metadata.title} />
         </Link>
       </Hidden>
       <Hidden smUp>
         <Link to="/" title="Go to Home page">
-          <img className="rpmg-logo-sm" src={logoSmall} alt={brand} />
+          <img className="rpmg-logo-sm" src={logoSmall} alt={metadata.title} />
         </Link>
       </Hidden>
     </IconButton>
   )
   return (
     <AppBar className={appBarClasses}>
+      <SEO pageTitle={pageTitle} metadata={metadata} />
+
       <Toolbar className={classes.container}>
         {leftLinks !== undefined ? brandComponent : null}
         <div>{leftLinks !== undefined ? leftLinks : brandComponent}</div>

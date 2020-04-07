@@ -11,14 +11,14 @@ import styles from "src/assets/jss/material-kit-react/views/homePage"
 const useStyles = makeStyles(styles)
 
 export default function HomePage(props) {
-  const classes = useStyles()
+  const pageClasses = useStyles()
 
   return (
-    <Layout {...props}>
-      <GridItem xs={12} sm={6} md={6} className={classes.grid}>
+    <Layout pageClasses={pageClasses} pageTitle="Welcome" {...props}>
+      <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
         <PromotedProgramsSection />
       </GridItem>
-      <GridItem xs={12} sm={6} md={6} className={classes.grid}>
+      <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
         <PromotedStaffSection />
       </GridItem>
     </Layout>

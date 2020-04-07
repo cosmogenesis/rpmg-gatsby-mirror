@@ -5,12 +5,13 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Riverside Psychiatric Medical Group`,
-    siteRootURL: ``,
-    description: `https://rivpsych.com"`,
+    siteRootURL: `https://www.rivpsych.com`,
+    description: `This is the description found in the gatsby config files`,
     author: `@gary_mcdaniel`,
   },
   plugins: [
     `gatsby-plugin-jss`,
+    "gatsby-plugin-sass",
     `gatsby-plugin-root-import`,
     `gatsby-plugin-react-helmet`,
     {

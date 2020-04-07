@@ -10,30 +10,31 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
+function SEO({ description, lang, meta, pageTitle, metadata }) {
+  /** reduce queries but moving this to a higher level component - GM
+     const { site } = useStaticQuery(
+      graphql`
+        query {
+          site {
+            siteMetadata {
+              title
+              description
+              author
+            }
           }
         }
-      }
-    `
-  )
-
-  const metaDescription = description || site.siteMetadata.description
+      `
+    )
+*/
+  const metaDescription = description || metadata.description
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={pageTitle}
+      titleTemplate={`%s | ${metadata.title}`}
       meta={[
         {
           name: `description`,
@@ -41,7 +42,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           property: `og:description`,
@@ -57,11 +58,11 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: metadata.author,
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           name: `twitter:description`,
@@ -92,7 +93,7 @@ SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+  pageTitle: PropTypes.string.isRequired,
 }
 
 export default SEO
