@@ -15,8 +15,8 @@ import HeaderLinksRight from "src/components/Header/HeaderLinksRight.js"
 import HeaderLinksLeft from "src/components/Header/HeaderLinksLeft.js"
 import Parallax from "src/components/Parallax/Parallax.js"
 
-export default function Layout(props) {
-  const { pageClasses, pageTitle, location } = props
+export default function Layout({ pageClasses, pageTitle, location, ...rest }) {
+  console.log(location)
 
   const { site } = useStaticQuery(
     graphql`
@@ -45,7 +45,7 @@ export default function Layout(props) {
           height: 400,
           color: "secondaryBgColor",
         }}
-        {...props}
+        {...rest}
       />
       <Parallax
         image={require("src/assets/img/hero_rpmg_pdx_front_exterior.jpg")}
@@ -58,12 +58,8 @@ export default function Layout(props) {
       </Parallax>
       <div className={classNames(pageClasses.main, pageClasses.mainRaised)}>
         <div className={pageClasses.container}>
-          <GridContainer
-            justify="center"
-            className="rpmg-content-container"
-            spacing={6}
-          >
-            {props.children}
+          <GridContainer justify="center" spacing={6}>
+            {rest.children}
           </GridContainer>
         </div>
       </div>
