@@ -45,7 +45,7 @@ export default class PromotedProgramsCards extends Component {
     this.classes = props.classes
     this.carouselSettings = carouselSettings
     this.delay = props.delay ? this.carouselSettings.autoplaySpeed / 2 : 0
-    this.programs = props.programs
+    this.featured = props.featured
 
     this.pause = this.pause.bind(this)
 
@@ -75,14 +75,16 @@ export default class PromotedProgramsCards extends Component {
   render() {
     return (
       <Card>
-        <CardHeader color="primary">Featured Service</CardHeader>
+        <CardHeader color="primary">{this.featured.headerText}</CardHeader>
 
         <Carousel
           ref={slider => (this.slider = slider)}
           {...this.carouselSettings}
           className={this.cardClasses.cardCarousel}
         >
-          {this.programs.map((program, i) => {
+          {this.featured.serviceCollections.map((collection, i) => {
+            console.log(collection.services)
+
             return (
               <CardBody
                 key={i}
@@ -95,14 +97,12 @@ export default class PromotedProgramsCards extends Component {
                 <GridContainer direction="column">
                   <GridItem>
                     <Typography gutterBottom variant="h4">
-                      {program.name}
+                      {collection.publicName}
                     </Typography>
                   </GridItem>
                   <GridItem className="rpmg-promoted-description">
                     <Typography gutterBottom variant="body1">
-                      This is a program or service category description and
-                      should display no more than 3 lines of text in mobile
-                      view. Aprox 120 characters.
+                      {collection.description.description}
                     </Typography>
                   </GridItem>
 
@@ -114,66 +114,57 @@ export default class PromotedProgramsCards extends Component {
                         <ListSubheader disableGutters>Services:</ListSubheader>
                       }
                     >
-                      <ListItem>Cognitive Therapy</ListItem>
-                      <ListItem>Motivational Therapy</ListItem>
-                      <ListItem>Relapse Prevention</ListItem>
-                      <ListItem>Family Systems</ListItem>
+                      {collection.services.map((service, i) => {
+                        if (i < 4) {
+                          return (
+                            <ListItem key={i}>{service.publicName}</ListItem>
+                          )
+                        }
+                      })}
                     </List>
-
-                    <Collapse
-                      in={this.state.expanded}
-                      timeout="auto"
-                      unmountOnExit
-                    >
-                      <List className="rpmg-list-wrapper" disablePadding>
-                        <ListItem>Collapsed Therapy</ListItem>
-                        <ListItem>Collapsed Prevention</ListItem>
-                        <ListItem>Collapsed Systems</ListItem>
-                        <ListItem>Collapsed Therapy</ListItem>
-                        <ListItem>Collapsed Prevention</ListItem>
-                        <ListItem>Collapsed Systems</ListItem>
-                        <ListItem
-                          className={this.classes.listItem}
-                          disableGutters
+                    {collection.services.length > 4 && (
+                      <>
+                        <Collapse
+                          in={this.state.expanded}
+                          timeout="auto"
+                          unmountOnExit
                         >
-                          Collapsed Therapy
-                        </ListItem>
-                        <ListItem
-                          className={this.classes.listItem}
-                          disableGutters
-                        >
-                          Collapsed Prevention
-                        </ListItem>
-                        <ListItem
-                          className={this.classes.listItem}
-                          disableGutters
-                        >
-                          Collapsed Systems
-                        </ListItem>
-                      </List>
-                    </Collapse>
-                    <GridItem className={this.classes.learnMoreLinkWrap}>
-                      <button
-                        className={clsx(this.classes.expand, {
-                          [this.classes.expandOpen]: this.state.expanded,
-                        })}
-                        onClick={this.handleExpandClick}
-                        aria-expanded={this.state.expanded}
-                        aria-label="More"
-                      >
-                        <GridContainer>
-                          <GridItem className="linkText collapsedText">
-                            More
-                          </GridItem>
-                          <GridItem className="linkText expandedText">
-                            Less
-                          </GridItem>
-                          <GridItem>
-                            <ArrowDropDownIcon />
-                          </GridItem>
-                        </GridContainer>
-                      </button>
-                    </GridItem>
+                          <List className="rpmg-list-wrapper" disablePadding>
+                            {collection.services.map((service, i) => {
+                              if (i > 4) {
+                                return (
+                                  <ListItem key={i}>
+                                    {service.publicName}
+                                  </ListItem>
+                                )
+                              }
+                            })}
+                          </List>
+                        </Collapse>
+                        <GridItem className={this.classes.learnMoreLinkWrap}>
+                          <button
+                            className={clsx(this.classes.expand, {
+                              [this.classes.expandOpen]: this.state.expanded,
+                            })}
+                            onClick={this.handleExpandClick}
+                            aria-expanded={this.state.expanded}
+                            aria-label="More"
+                          >
+                            <GridContainer>
+                              <GridItem className="linkText collapsedText">
+                                More
+                              </GridItem>
+                              <GridItem className="linkText expandedText">
+                                Less
+                              </GridItem>
+                              <GridItem>
+                                <ArrowDropDownIcon />
+                              </GridItem>
+                            </GridContainer>
+                          </button>
+                        </GridItem>
+                      </>
+                    )}
                   </GridContainer>
                 </GridContainer>
                 <CardActions className={this.cardClasses.buttonWrap}>

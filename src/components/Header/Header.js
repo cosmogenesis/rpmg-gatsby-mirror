@@ -64,7 +64,7 @@ export default function Header(props) {
     leftLinks,
     fixed,
     absolute,
-    pageTitle,
+    scaffolding,
     metadata,
   } = props
   const appBarClasses = classNames({
@@ -90,7 +90,7 @@ export default function Header(props) {
   )
   return (
     <AppBar className={appBarClasses}>
-      <SEO pageTitle={pageTitle} metadata={metadata} />
+      <SEO scaffolding={scaffolding} metadata={metadata} />
 
       <Toolbar className={classes.container}>
         {leftLinks !== undefined ? brandComponent : null}

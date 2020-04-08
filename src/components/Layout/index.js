@@ -15,9 +15,12 @@ import HeaderLinksRight from "src/components/Header/HeaderLinksRight.js"
 import HeaderLinksLeft from "src/components/Header/HeaderLinksLeft.js"
 import Parallax from "src/components/Parallax/Parallax.js"
 
-export default function Layout({ pageClasses, pageTitle, location, ...rest }) {
-  console.log(location)
-
+export default function Layout({
+  pageClasses,
+  location,
+  scaffolding,
+  ...rest
+}) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -32,11 +35,12 @@ export default function Layout({ pageClasses, pageTitle, location, ...rest }) {
     `
   )
 
+  //const isMobile = useDetectMobile()
+
   return (
     <div className={pageClasses.body}>
       <Header
         metadata={site.siteMetadata}
-        pageTitle={pageTitle}
         rightLinks={<HeaderLinksRight location={location} />}
         leftLinks={<HeaderLinksLeft location={location} />}
         fixed
@@ -45,11 +49,10 @@ export default function Layout({ pageClasses, pageTitle, location, ...rest }) {
           height: 400,
           color: "secondaryBgColor",
         }}
+        scaffolding={scaffolding}
         {...rest}
       />
-      <Parallax
-        image={require("src/assets/img/hero_rpmg_pdx_front_exterior.jpg")}
-      >
+      <Parallax image={scaffolding.heroImageDesktop.file.url}>
         <div className={pageClasses.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={12}></GridItem>

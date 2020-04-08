@@ -8,9 +8,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+//import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, pageTitle, metadata }) {
+function SEO({ description, lang, meta, scaffolding, metadata }) {
   /** reduce queries but moving this to a higher level component - GM
      const { site } = useStaticQuery(
       graphql`
@@ -26,14 +26,18 @@ function SEO({ description, lang, meta, pageTitle, metadata }) {
       `
     )
 */
-  const metaDescription = description || metadata.description
+
+  const { seoPageTitle, seoDescription, keywords } = scaffolding
+
+  const metaDescription = seoDescription || description || metadata.description
 
   return (
     <Helmet
+      keywords={keywords}
       htmlAttributes={{
         lang,
       }}
-      title={pageTitle}
+      title={seoPageTitle}
       titleTemplate={`%s | ${metadata.title}`}
       meta={[
         {
@@ -42,7 +46,7 @@ function SEO({ description, lang, meta, pageTitle, metadata }) {
         },
         {
           property: `og:title`,
-          content: pageTitle,
+          content: seoPageTitle,
         },
         {
           property: `og:description`,
@@ -62,7 +66,7 @@ function SEO({ description, lang, meta, pageTitle, metadata }) {
         },
         {
           name: `twitter:title`,
-          content: pageTitle,
+          content: seoPageTitle,
         },
         {
           name: `twitter:description`,
@@ -93,7 +97,8 @@ SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  pageTitle: PropTypes.string.isRequired,
+  metadata: PropTypes.object.isRequired,
+  scaffolding: PropTypes.object.isRequired,
 }
 
 export default SEO

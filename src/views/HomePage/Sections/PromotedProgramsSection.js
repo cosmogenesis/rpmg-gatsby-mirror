@@ -10,25 +10,13 @@ import PromotedProgramsCards from "src/components/PromotedProgramsCards"
 const usePromotedStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-export default function PromotedStaffSection() {
+export default function PromotedProgramsSection({ featuredServices }) {
   const classes = usePromotedStyles()
   const cardClasses = useCardStyles()
 
-  const programs = [
-    {
-      name: "Opioid Cessation",
-    },
-    {
-      name: "Clinical Psychiatric",
-    },
-    {
-      name: "Behavioral Health",
-    },
-  ]
-
   return (
     <PromotedProgramsCards
-      programs={programs}
+      featured={featuredServices}
       classes={classes}
       cardClasses={cardClasses}
       delay={false}

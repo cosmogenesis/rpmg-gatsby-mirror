@@ -71,7 +71,9 @@ const defaultComponentStyles = {
           marginLeft: "1rem",
         },
 
-        "&:nth-child(odd)": {},
+        "&:nth-child(even)": {
+          paddingRight: "1rem",
+        },
         "& .MuiListItemText-root": {
           margin: "0 0 0 -5px",
         },
