@@ -1,8 +1,7 @@
 import React from "react"
-import Homepage from "../views/HomePage"
+import TermsPage from "../views/TermsPage"
 
 const IndexPage = ({ location }) => {
-  return <Homepage location={location} />
+  return <TermsPage location={location} />
 }
-
 export default IndexPage

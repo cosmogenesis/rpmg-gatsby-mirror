@@ -16,7 +16,7 @@ import HeaderLinksLeft from "src/components/Header/HeaderLinksLeft.js"
 import Parallax from "src/components/Parallax/Parallax.js"
 
 export default function Layout(props) {
-  const { pageClasses, pageTitle, ...rest } = props
+  const { pageClasses, pageTitle, location } = props
 
   const { site } = useStaticQuery(
     graphql`
@@ -37,12 +37,8 @@ export default function Layout(props) {
       <Header
         metadata={site.siteMetadata}
         pageTitle={pageTitle}
-        rightLinks={
-          <HeaderLinksRight location={rest.location ? rest.location : "/"} />
-        }
-        leftLinks={
-          <HeaderLinksLeft location={rest.location ? rest.location : "/"} />
-        }
+        rightLinks={<HeaderLinksRight location={location} />}
+        leftLinks={<HeaderLinksLeft location={location} />}
         fixed
         color={"secondaryBgColor"}
         changeColorOnScroll={{

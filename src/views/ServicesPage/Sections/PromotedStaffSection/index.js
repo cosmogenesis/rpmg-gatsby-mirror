@@ -14,18 +14,6 @@ export default function PromotedStaffSection() {
   const classes = usePromotedStyles()
   const cardClasses = useCardStyles()
 
-  const carouselSettings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    focusOnSelect: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-  }
-
   const staff = [
     {
       name: "Dr. Sukh Kalsa",
@@ -41,10 +29,8 @@ export default function PromotedStaffSection() {
   return (
     <PromotedStaffCards
       staff={staff}
-      carouselSettings={carouselSettings}
       classes={classes}
       cardClasses={cardClasses}
-      delay={carouselSettings.autoplaySpeed / 2}
     />
   )
 }

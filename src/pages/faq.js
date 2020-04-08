@@ -1,8 +1,8 @@
 import React from "react"
-import Homepage from "../views/HomePage"
+import FaqPage from "../views/FaqPage"
 
 const IndexPage = ({ location }) => {
-  return <Homepage location={location} />
+  return <FaqPage location={location} />
 }
 
 export default IndexPage

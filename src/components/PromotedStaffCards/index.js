@@ -25,13 +25,26 @@ import {
   CardActions,
 } from "@material-ui/core"
 
+const carouselSettings = {
+  dots: false,
+  arrows: false,
+  infinite: true,
+  speed: 1000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  focusOnSelect: true,
+  pauseOnHover: true,
+  autoplay: true,
+  autoplaySpeed: 5000,
+}
+
 export default class PromotedStaffCards extends Component {
   constructor(props) {
     super(props)
     this.cardClasses = props.cardClasses
     this.classes = props.classes
-    this.carouselSettings = props.carouselSettings
-    this.delay = props.delay
+    this.carouselSettings = carouselSettings
+    this.delay = props.delay ? this.carouselSettings.autoplaySpeed / 2 : 0
     this.staff = props.staff
 
     this.pause = this.pause.bind(this)
@@ -42,8 +55,10 @@ export default class PromotedStaffCards extends Component {
     }
   }
   componentDidMount() {
-    this.pause()
-    setTimeout(this.play, this.delay)
+    if (this.delay !== false) {
+      this.pause()
+      setTimeout(this.play, this.delay)
+    }
   }
 
   handleExpandClick() {

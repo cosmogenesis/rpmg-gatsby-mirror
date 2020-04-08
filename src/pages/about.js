@@ -1,8 +1,8 @@
 import React from "react"
-import Homepage from "../views/HomePage"
+import AboutPage from "../views/AboutPage"
 
 const IndexPage = ({ location }) => {
-  return <Homepage location={location} />
+  return <AboutPage location={location} />
 }
 
 export default IndexPage

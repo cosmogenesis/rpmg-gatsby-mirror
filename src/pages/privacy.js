@@ -1,8 +1,8 @@
 import React from "react"
-import Homepage from "../views/HomePage"
+import PrivacyPage from "../views/PrivacyPage"
 
 const IndexPage = ({ location }) => {
-  return <Homepage location={location} />
+  return <PrivacyPage location={location} />
 }
 
 export default IndexPage
