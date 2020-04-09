@@ -1,5 +1,10 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import {
+  PageScaffolding,
+  FeaturedServicesCollections,
+  FeaturedProfessionals,
+} from "src/components/QueryFragments"
 
 import { makeStyles } from "@material-ui/core/styles"
 import GridItem from "src/components/Grid/GridItem.js"
@@ -19,44 +24,13 @@ export default function HomePage(props) {
         allContentfulPageHomepage {
           nodes {
             scaffolding {
-              seoDescription
-              seoPageTitle
-              keywords
-              heroImageDesktop {
-                file {
-                  url
-                }
-              }
-              heroImageMobile {
-                file {
-                  url
-                }
-              }
+              ...PageScaffolding
             }
             featuredServices {
-              serviceCollections {
-                description {
-                  description
-                }
-                publicName
-                services {
-                  publicName
-                }
-              }
-              headerText
+              ...FeaturedServicesCollections
             }
             featuredProfessionals {
-              professionals {
-                bioTeaser
-                salutation
-                lastName
-                firstName
-                suffix
-                services {
-                  publicName
-                }
-              }
-              headerText
+              ...FeaturedProfessionals
             }
           }
         }

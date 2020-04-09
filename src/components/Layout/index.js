@@ -1,6 +1,7 @@
 import React from "react"
 //import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import SiteMetadata from "src/components/QueryFragments"
 
 // nodejs library that concatenates pageClasses
 import classNames from "classnames"
@@ -25,11 +26,7 @@ export default function Layout({
     graphql`
       query {
         site {
-          siteMetadata {
-            title
-            description
-            author
-          }
+          ...SiteMetaData
         }
       }
     `
