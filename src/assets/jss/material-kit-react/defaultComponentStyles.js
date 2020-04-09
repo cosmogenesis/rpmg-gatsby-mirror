@@ -86,6 +86,7 @@ const defaultComponentStyles = {
   },
   learnMoreLinkWrap: {
     marginLeft: "15px",
+    width: "100%",
     "& button": {
       background: "transparent",
       border: "0",

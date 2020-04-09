@@ -83,8 +83,6 @@ export default class PromotedProgramsCards extends Component {
           className={this.cardClasses.cardCarousel}
         >
           {this.featured.serviceCollections.map((collection, i) => {
-            console.log(collection.services)
-
             return (
               <CardBody
                 key={i}
@@ -131,7 +129,7 @@ export default class PromotedProgramsCards extends Component {
                         >
                           <List className="rpmg-list-wrapper" disablePadding>
                             {collection.services.map((service, i) => {
-                              if (i > 4) {
+                              if (i >= 4) {
                                 return (
                                   <ListItem key={i}>
                                     {service.publicName}

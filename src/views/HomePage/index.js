@@ -52,6 +52,9 @@ export default function HomePage(props) {
                 lastName
                 firstName
                 suffix
+                services {
+                  publicName
+                }
               }
               headerText
             }

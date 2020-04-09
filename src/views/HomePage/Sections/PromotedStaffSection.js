@@ -10,25 +10,13 @@ import PromotedStaffCards from "src/components/PromotedStaffCards"
 const usePromotedStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-export default function PromotedStaffSection() {
+export default function PromotedStaffSection({ featuredProfessionals }) {
   const classes = usePromotedStyles()
   const cardClasses = useCardStyles()
 
-  const staff = [
-    {
-      name: "Dr. Sukh Kalsa",
-    },
-    {
-      name: "Dr. Bruce Heischober",
-    },
-    {
-      name: "Dr. Robert Summerour",
-    },
-  ]
-
   return (
     <PromotedStaffCards
-      staff={staff}
+      featured={featuredProfessionals}
       classes={classes}
       cardClasses={cardClasses}
       delay={true}
