@@ -54,3 +54,14 @@ export const featuredProfessionals = graphql`
     }
   }
 `
+
+export const siteVariables = graphql`
+  fragment SiteVariables on ContentfulWebsiteGlobalVariables {
+    buttonText_featuredProfessionals
+    buttonText_featuredServices
+    headerText_featuredProfessionals
+    headerText_featuredServices
+    siteTitle
+    producer
+  }
+`

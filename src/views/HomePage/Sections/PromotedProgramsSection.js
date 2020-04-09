@@ -10,12 +10,17 @@ import PromotedProgramsCards from "src/components/PromotedProgramsCards"
 const usePromotedStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-export default function PromotedProgramsSection({ featuredServices }) {
+export default function PromotedProgramsSection({
+  featuredServices,
+  siteVariables,
+}) {
   const classes = usePromotedStyles()
   const cardClasses = useCardStyles()
 
   return (
     <PromotedProgramsCards
+      headerText={siteVariables.headerText_featuredServices}
+      actionButtonText={siteVariables.buttonText_featuredServices}
       featured={featuredServices}
       classes={classes}
       cardClasses={cardClasses}

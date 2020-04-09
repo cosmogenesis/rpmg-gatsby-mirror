@@ -41,6 +41,7 @@ const carouselSettings = {
 export default class PromotedProgramsCards extends Component {
   constructor(props) {
     super(props)
+    this.props = props
     this.cardClasses = props.cardClasses
     this.classes = props.classes
     this.carouselSettings = carouselSettings
@@ -75,7 +76,7 @@ export default class PromotedProgramsCards extends Component {
   render() {
     return (
       <Card>
-        <CardHeader color="primary">{this.featured.headerText}</CardHeader>
+        <CardHeader color="primary">{this.props.headerText}</CardHeader>
 
         <Carousel
           ref={slider => (this.slider = slider)}
@@ -171,7 +172,7 @@ export default class PromotedProgramsCards extends Component {
                       color="primary"
                       className={this.cardClasses.button}
                     >
-                      See All Services
+                      {this.props.actionButtonText}
                     </CustomButton>
                   </Link>
                 </CardActions>

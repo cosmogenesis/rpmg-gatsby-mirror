@@ -18,20 +18,18 @@ import styles from "src/assets/jss/material-kit-react/views/homePage"
 const useStyles = makeStyles(styles)
 
 export default function HomePage(props) {
-  const { allContentfulPageHomepage } = useStaticQuery(
+  const { contentfulPageHomepage } = useStaticQuery(
     graphql`
       query {
-        allContentfulPageHomepage {
-          nodes {
-            scaffolding {
-              ...PageScaffolding
-            }
-            featuredServices {
-              ...FeaturedServicesCollections
-            }
-            featuredProfessionals {
-              ...FeaturedProfessionals
-            }
+        contentfulPageHomepage {
+          scaffolding {
+            ...PageScaffolding
+          }
+          featuredServices {
+            ...FeaturedServicesCollections
+          }
+          featuredProfessionals {
+            ...FeaturedProfessionals
           }
         }
       }
@@ -42,18 +40,26 @@ export default function HomePage(props) {
     scaffolding,
     featuredProfessionals,
     featuredServices,
-  } = allContentfulPageHomepage.nodes[0]
+  } = contentfulPageHomepage
 
   const pageClasses = useStyles()
 
   return (
     <Layout pageClasses={pageClasses} scaffolding={scaffolding} {...props}>
-      <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
-        <PromotedProgramsSection featuredServices={featuredServices} />
-      </GridItem>
-      <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
-        <PromotedStaffSection featuredProfessionals={featuredProfessionals} />
-      </GridItem>
+      <>
+        <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
+          <PromotedProgramsSection
+            siteVariables={props.siteVariables}
+            featuredServices={featuredServices}
+          />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
+          <PromotedStaffSection
+            siteVariables={props.siteVariables}
+            featuredProfessionals={featuredProfessionals}
+          />
+        </GridItem>
+      </>
     </Layout>
   )
 }

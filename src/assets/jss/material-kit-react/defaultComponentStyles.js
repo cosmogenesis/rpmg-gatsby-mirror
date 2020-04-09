@@ -38,6 +38,9 @@ const defaultComponentStyles = {
         fontSize: defaultDesktopFontSize,
       },
     },
+    "& ..MuiCollapse-container": {
+      width: "100%",
+    },
     "& .rpmg-list-wrapper": {
       width: "100%",
       listStyle: "disc",

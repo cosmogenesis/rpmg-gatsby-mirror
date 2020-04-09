@@ -1,7 +1,5 @@
 import React from "react"
 //import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-import SiteMetadata from "src/components/QueryFragments"
 
 // nodejs library that concatenates pageClasses
 import classNames from "classnames"
@@ -15,29 +13,20 @@ import GridItem from "src/components/Grid/GridItem.js"
 import HeaderLinksRight from "src/components/Header/HeaderLinksRight.js"
 import HeaderLinksLeft from "src/components/Header/HeaderLinksLeft.js"
 import Parallax from "src/components/Parallax/Parallax.js"
+import { siteVariables } from "../QueryFragments"
 
 export default function Layout({
   pageClasses,
   location,
   scaffolding,
+  SiteVariables,
   ...rest
 }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          ...SiteMetaData
-        }
-      }
-    `
-  )
-
   //const isMobile = useDetectMobile()
 
   return (
     <div className={pageClasses.body}>
       <Header
-        metadata={site.siteMetadata}
         rightLinks={<HeaderLinksRight location={location} />}
         leftLinks={<HeaderLinksLeft location={location} />}
         fixed
@@ -47,6 +36,7 @@ export default function Layout({
           color: "secondaryBgColor",
         }}
         scaffolding={scaffolding}
+        SiteVariables={siteVariables}
         {...rest}
       />
       <Parallax image={scaffolding.heroImageDesktop.file.url}>

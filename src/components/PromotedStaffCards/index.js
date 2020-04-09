@@ -86,7 +86,7 @@ export default class PromotedStaffCards extends Component {
   render() {
     return (
       <Card>
-        <CardHeader color="primary">{this.featured.headerText}</CardHeader>
+        <CardHeader color="primary">{this.props.headerText}</CardHeader>
 
         <Carousel
           ref={slider => (this.slider = slider)}
@@ -182,7 +182,7 @@ export default class PromotedStaffCards extends Component {
                       color="primary"
                       className={this.cardClasses.button}
                     >
-                      See All Health Professionals
+                      {this.props.actionButtonText}
                     </CustomButton>
                   </Link>
                 </CardActions>

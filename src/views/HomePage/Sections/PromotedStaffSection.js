@@ -10,12 +10,17 @@ import PromotedStaffCards from "src/components/PromotedStaffCards"
 const usePromotedStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-export default function PromotedStaffSection({ featuredProfessionals }) {
+export default function PromotedStaffSection({
+  featuredProfessionals,
+  siteVariables,
+}) {
   const classes = usePromotedStyles()
   const cardClasses = useCardStyles()
 
   return (
     <PromotedStaffCards
+      headerText={siteVariables.headerText_featuredProfessionals}
+      actionButtonText={siteVariables.buttonText_featuredProfessionals}
       featured={featuredProfessionals}
       classes={classes}
       cardClasses={cardClasses}

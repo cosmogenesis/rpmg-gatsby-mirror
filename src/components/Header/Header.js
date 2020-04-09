@@ -65,7 +65,7 @@ export default function Header(props) {
     fixed,
     absolute,
     scaffolding,
-    metadata,
+    siteVariables,
   } = props
   const appBarClasses = classNames({
     [classes.appBar]: true,
@@ -78,19 +78,27 @@ export default function Header(props) {
     <IconButton className="rpmg-logo-wrapper">
       <Hidden only={["xs"]}>
         <Link to="/" title="Go to Home page">
-          <img className="rpmg-logo-lg" src={logoLarge} alt={metadata.title} />
+          <img
+            className="rpmg-logo-lg"
+            src={logoLarge}
+            alt={siteVariables.siteTitle}
+          />
         </Link>
       </Hidden>
       <Hidden smUp>
         <Link to="/" title="Go to Home page">
-          <img className="rpmg-logo-sm" src={logoSmall} alt={metadata.title} />
+          <img
+            className="rpmg-logo-sm"
+            src={logoSmall}
+            alt={siteVariables.siteTitle}
+          />
         </Link>
       </Hidden>
     </IconButton>
   )
   return (
     <AppBar className={appBarClasses}>
-      <SEO scaffolding={scaffolding} metadata={metadata} />
+      <SEO scaffolding={scaffolding} siteVariables={siteVariables} />
 
       <Toolbar className={classes.container}>
         {leftLinks !== undefined ? brandComponent : null}
