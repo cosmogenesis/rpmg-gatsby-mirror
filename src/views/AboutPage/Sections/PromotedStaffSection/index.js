@@ -10,41 +10,21 @@ import PromotedStaffCards from "src/components/PromotedStaffCards"
 const usePromotedStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-export default function PromotedStaffSection() {
+export default function PromotedStaffSection({
+  featuredProfessionals,
+  siteVariables,
+}) {
   const classes = usePromotedStyles()
   const cardClasses = useCardStyles()
 
-  const carouselSettings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    focusOnSelect: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-  }
-
-  const staff = [
-    {
-      name: "Dr. Sukh Kalsa",
-    },
-    {
-      name: "Dr. Bruce Heischober",
-    },
-    {
-      name: "Dr. Robert Summerour",
-    },
-  ]
-
   return (
     <PromotedStaffCards
-      staff={staff}
-      carouselSettings={carouselSettings}
+      headerText={siteVariables.headerText_featuredProfessionals}
+      actionButtonText={siteVariables.buttonText_featuredProfessionals}
+      featured={featuredProfessionals}
       classes={classes}
       cardClasses={cardClasses}
-      delay={carouselSettings.autoplaySpeed / 2}
+      delay={true}
     />
   )
 }

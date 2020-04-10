@@ -1,8 +1,25 @@
 import React from "react"
-import AboutPage from "../views/AboutPage"
+import { useStaticQuery, graphql } from "gatsby"
+import SiteVariables from "src/components/QueryFragments"
+import AboutPageView from "../views/AboutPage"
 
-const IndexPage = ({ location }) => {
-  return <AboutPage location={location} />
+const AboutPage = ({ location }) => {
+  const { contentfulWebsiteGlobalVariables } = useStaticQuery(
+    graphql`
+      query {
+        contentfulWebsiteGlobalVariables {
+          ...SiteVariables
+        }
+      }
+    `
+  )
+
+  return (
+    <AboutPageView
+      siteVariables={contentfulWebsiteGlobalVariables}
+      location={location}
+    />
+  )
 }
 
-export default IndexPage
+export default AboutPage

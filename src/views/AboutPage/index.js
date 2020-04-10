@@ -1,6 +1,10 @@
 import React from "react"
-// nodejs library that concatenates classes
-import classNames from "classnames"
+import { useStaticQuery, graphql } from "gatsby"
+import {
+  PageScaffolding,
+  FeaturedProfessionals,
+} from "src/components/QueryFragments"
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles"
 import Layout from "src/components/Layout"
@@ -14,14 +18,33 @@ import styles from "src/assets/jss/material-kit-react/views/aboutPage"
 const useStyles = makeStyles(styles)
 
 export default function AboutPage(props) {
+  const { contentfulPageAboutUs } = useStaticQuery(
+    graphql`
+      query {
+        contentfulPageAboutUs {
+          scaffolding {
+            ...PageScaffolding
+          }
+          featuredProfessionals {
+            ...FeaturedProfessionals
+          }
+        }
+      }
+    `
+  )
+
+  const { scaffolding, featuredProfessionals } = contentfulPageAboutUs
   const pageClasses = useStyles()
   return (
-    <Layout pageClasses={pageClasses} pageTitle="Welcome" {...props}>
+    <Layout pageClasses={pageClasses} scaffolding={scaffolding} {...props}>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
         <AboutSection />
       </GridItem>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
-        <PromotedStaffSection />
+        <PromotedStaffSection
+          siteVariables={props.siteVariables}
+          featuredProfessionals={featuredProfessionals}
+        />
       </GridItem>
     </Layout>
   )

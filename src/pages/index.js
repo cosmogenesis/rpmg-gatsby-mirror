@@ -1,9 +1,9 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import SiteVariables from "src/components/QueryFragments"
-import Homepage from "../views/HomePage"
+import HomePageView from "../views/HomePage"
 
-const IndexPage = ({ location }) => {
+const HomePage = ({ location }) => {
   const { contentfulWebsiteGlobalVariables } = useStaticQuery(
     graphql`
       query {
@@ -14,11 +14,11 @@ const IndexPage = ({ location }) => {
     `
   )
   return (
-    <Homepage
+    <HomePageView
       siteVariables={contentfulWebsiteGlobalVariables}
       location={location}
     />
   )
 }
 
-export default IndexPage
+export default HomePage

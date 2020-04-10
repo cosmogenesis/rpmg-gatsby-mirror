@@ -1,8 +1,24 @@
 import React from "react"
-import FaqPage from "../views/FaqPage"
+import { useStaticQuery, graphql } from "gatsby"
+import SiteVariables from "src/components/QueryFragments"
+import FaqPageView from "../views/FaqPage"
 
-const IndexPage = ({ location }) => {
-  return <FaqPage location={location} />
+const FaqPage = ({ location }) => {
+  const { contentfulWebsiteGlobalVariables } = useStaticQuery(
+    graphql`
+      query {
+        contentfulWebsiteGlobalVariables {
+          ...SiteVariables
+        }
+      }
+    `
+  )
+  return (
+    <FaqPageView
+      siteVariables={contentfulWebsiteGlobalVariables}
+      location={location}
+    />
+  )
 }
 
-export default IndexPage
+export default FaqPage

@@ -46,8 +46,6 @@ export default ResourcesSection => {
     setFormSelection(event.target.value)
   }
 
-  console.log(classes)
-
   return (
     <Card className={classes.resourcesSection}>
       <CardHeader color="primary">Patient Resources</CardHeader>

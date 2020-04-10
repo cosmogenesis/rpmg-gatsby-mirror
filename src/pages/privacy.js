@@ -1,8 +1,24 @@
 import React from "react"
-import PrivacyPage from "../views/PrivacyPage"
+import { useStaticQuery, graphql } from "gatsby"
+import SiteVariables from "src/components/QueryFragments"
+import PrivacyPageView from "../views/PrivacyPage"
 
-const IndexPage = ({ location }) => {
-  return <PrivacyPage location={location} />
+const PrivacyPage = ({ location }) => {
+  const { contentfulWebsiteGlobalVariables } = useStaticQuery(
+    graphql`
+      query {
+        contentfulWebsiteGlobalVariables {
+          ...SiteVariables
+        }
+      }
+    `
+  )
+  return (
+    <PrivacyPageView
+      siteVariables={contentfulWebsiteGlobalVariables}
+      location={location}
+    />
+  )
 }
 
-export default IndexPage
+export default PrivacyPage

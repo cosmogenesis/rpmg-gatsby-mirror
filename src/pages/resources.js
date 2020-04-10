@@ -1,8 +1,24 @@
 import React from "react"
-import ResourcesPage from "../views/ResourcesPage"
+import { useStaticQuery, graphql } from "gatsby"
+import SiteVariables from "src/components/QueryFragments"
+import ResourcesPageView from "../views/ResourcesPage"
 
-const IndexPage = ({ location }) => {
-  return <ResourcesPage location={location} />
+const ResourcesPage = ({ location }) => {
+  const { contentfulWebsiteGlobalVariables } = useStaticQuery(
+    graphql`
+      query {
+        contentfulWebsiteGlobalVariables {
+          ...SiteVariables
+        }
+      }
+    `
+  )
+  return (
+    <ResourcesPageView
+      siteVariables={contentfulWebsiteGlobalVariables}
+      location={location}
+    />
+  )
 }
 
-export default IndexPage
+export default ResourcesPage

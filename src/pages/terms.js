@@ -1,7 +1,24 @@
 import React from "react"
-import TermsPage from "../views/TermsPage"
+import { useStaticQuery, graphql } from "gatsby"
+import SiteVariables from "src/components/QueryFragments"
+import TermsPageView from "../views/TermsPage"
 
-const IndexPage = ({ location }) => {
-  return <TermsPage location={location} />
+const TermsPage = ({ location }) => {
+  const { contentfulWebsiteGlobalVariables } = useStaticQuery(
+    graphql`
+      query {
+        contentfulWebsiteGlobalVariables {
+          ...SiteVariables
+        }
+      }
+    `
+  )
+  return (
+    <TermsPageView
+      siteVariables={contentfulWebsiteGlobalVariables}
+      location={location}
+    />
+  )
 }
-export default IndexPage
+
+export default TermsPage

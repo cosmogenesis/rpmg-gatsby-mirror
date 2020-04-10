@@ -1,8 +1,24 @@
 import React from "react"
-import ProfessionalsPage from "../views/ProfessionalsPage"
+import { useStaticQuery, graphql } from "gatsby"
+import SiteVariables from "src/components/QueryFragments"
+import ProfessionalsPageView from "../views/ProfessionalsPage"
 
-const IndexPage = ({ location }) => {
-  return <ProfessionalsPage location={location} />
+const ProfessionalsPage = ({ location }) => {
+  const { contentfulWebsiteGlobalVariables } = useStaticQuery(
+    graphql`
+      query {
+        contentfulWebsiteGlobalVariables {
+          ...SiteVariables
+        }
+      }
+    `
+  )
+  return (
+    <ProfessionalsPageView
+      siteVariables={contentfulWebsiteGlobalVariables}
+      location={location}
+    />
+  )
 }
 
-export default IndexPage
+export default ProfessionalsPage
