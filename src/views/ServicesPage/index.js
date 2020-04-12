@@ -2,6 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {
   PageScaffolding,
+  ServiceCollections,
   FeaturedServicesCollections,
 } from "src/components/QueryFragments"
 
@@ -17,13 +18,22 @@ import styles from "src/assets/jss/material-kit-react/views/servicesPage"
 const useStyles = makeStyles(styles)
 
 export default function ServicesPage(props) {
-  const { contentfulPageServicesListing } = useStaticQuery(
+  const {
+    contentfulPageServicesListing,
+    allContentfulServiceCollectionProgramOrServiceCategory,
+  } = useStaticQuery(
     graphql`
       query {
+        allContentfulServiceCollectionProgramOrServiceCategory {
+          nodes {
+            ...ServiceCollections
+          }
+        }
         contentfulPageServicesListing {
           scaffolding {
             ...PageScaffolding
           }
+          headerText_serviceListing
           featuredProfessionals {
             ...FeaturedProfessionals
           }
@@ -34,16 +44,20 @@ export default function ServicesPage(props) {
 
   const {
     scaffolding,
+    headerText_serviceListing,
     featuredProfessionals,
-    //featuredServices,
   } = contentfulPageServicesListing
-
   const pageClasses = useStyles()
 
   return (
     <Layout pageClasses={pageClasses} scaffolding={scaffolding} {...props}>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
-        <ServicesListSection />
+        <ServicesListSection
+          headerText={headerText_serviceListing}
+          serviceCollections={
+            allContentfulServiceCollectionProgramOrServiceCategory.nodes
+          }
+        />
       </GridItem>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
         <PromotedStaffSection

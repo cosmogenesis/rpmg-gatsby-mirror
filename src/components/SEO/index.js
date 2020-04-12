@@ -97,7 +97,7 @@ SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  metadata: PropTypes.object.isRequired,
+  siteVariables: PropTypes.object.isRequired,
   scaffolding: PropTypes.object.isRequired,
 }
 

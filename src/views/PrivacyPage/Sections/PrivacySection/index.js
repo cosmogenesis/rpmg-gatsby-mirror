@@ -66,7 +66,7 @@ export default PrivacyPolicySection => {
                 .
               </Typography>
             </ListItem>
-            <ListItem disableGutters cclassName="rpmg-list-item">
+            <ListItem disableGutters className="rpmg-list-item">
               <Typography variant="body1">
                 “Log files” track actions occurring on the Site, and collect
                 data including your IP address, browser type, Internet service

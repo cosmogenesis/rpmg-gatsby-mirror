@@ -34,7 +34,7 @@ const programs = [
   },
 ]
 
-export default ServicesListSection => {
+const ServicesListSection = ({ headerText, serviceCollections }) => {
   const classes = useStyles()
   const cardClasses = useCardStyles()
 
@@ -51,9 +51,11 @@ export default ServicesListSection => {
     setExpandedState(expandedState)
   }
 
+  console.log(classes)
+
   return (
     <Card className={classNames(classes.servicesListSection)}>
-      <CardHeader color="primary">Our Services and Programs</CardHeader>
+      <CardHeader color="primary">{headerText}</CardHeader>
       <CardBody
         className={classNames(
           "cardBody",
@@ -62,7 +64,7 @@ export default ServicesListSection => {
         )}
       >
         <GridContainer direction="column">
-          {programs.map((program, i) => {
+          {serviceCollections.map((collection, i) => {
             return (
               <GridContainer
                 direction="row"
@@ -71,68 +73,70 @@ export default ServicesListSection => {
               >
                 <GridItem>
                   <Typography gutterBottom variant="h5">
-                    {program.name}
+                    {collection.publicName}
                   </Typography>
                 </GridItem>
                 <GridItem>
                   {/**
                   <Typography gutterBottom variant="body2">
-                    This is a service cartegory or program description and
-                    should display no more than 3 lines of text in the component
-                    in the mobile view. Aprox 120 characters.
+                    {collection.description}
                   </Typography>
                    */}
                 </GridItem>
 
                 <GridContainer item spacing={0} direction="row">
                   <List className="rpmg-list-wrapper" disablePadding>
-                    <ListItem>Cognitive Therapy</ListItem>
-                    <ListItem>Motivational Therapy</ListItem>
-                    <ListItem>Relapse Prevention</ListItem>
-                    <ListItem>Family Systems</ListItem>
+                    {collection.services.map((service, i) => {
+                      if (i < 4) {
+                        return <ListItem key={i}>{service.publicName}</ListItem>
+                      }
+                    })}
                   </List>
-
-                  <Collapse
-                    in={servicesExpanded[i]}
-                    timeout="auto"
-                    unmountOnExit
-                  >
-                    <List className="rpmg-list-wrapper" disablePadding>
-                      <ListItem>Collapsed Therapy</ListItem>
-                      <ListItem>Collapsed Prevention</ListItem>
-                      <ListItem>Collapsed Systems</ListItem>
-                      <ListItem>Collapsed Therapy</ListItem>
-                      <ListItem>Collapsed Prevention</ListItem>
-                      <ListItem>Collapsed Systems</ListItem>
-                      <ListItem>Collapsed Therapy</ListItem>
-                      <ListItem>Collapsed Prevention</ListItem>
-                      <ListItem>Collapsed Systems</ListItem>
-                    </List>
-                  </Collapse>
-                  <GridItem className={classes.learnMoreLinkWrap}>
-                    <button
-                      className={clsx(classes.expand, {
-                        [classes.expandOpen]: servicesExpanded[i],
-                      })}
-                      onClick={function() {
-                        handleExpandClick(i)
-                      }}
-                      aria-expanded={servicesExpanded[i]}
-                      aria-label="More"
-                    >
-                      <GridContainer>
-                        <GridItem className="linkText collapsedText">
-                          More
-                        </GridItem>
-                        <GridItem className="linkText expandedText">
-                          Less
-                        </GridItem>
-                        <GridItem>
-                          <ArrowDropDownIcon />
-                        </GridItem>
-                      </GridContainer>
-                    </button>
-                  </GridItem>
+                  {collection.services.length > 4 && (
+                    <>
+                      <Collapse
+                        in={servicesExpanded[i]}
+                        timeout="auto"
+                        unmountOnExit
+                      >
+                        <List className="rpmg-list-wrapper" disablePadding>
+                          {collection.services.map((service, i) => {
+                            if (i >= 4) {
+                              return (
+                                <ListItem key={i}>
+                                  {service.publicName}
+                                </ListItem>
+                              )
+                            }
+                          })}
+                        </List>
+                      </Collapse>
+                      <GridItem className={classes.learnMoreLinkWrap}>
+                        <button
+                          className={clsx(classes.expand, {
+                            [classes.expandOpen]: servicesExpanded[i],
+                          })}
+                          onClick={function() {
+                            handleExpandClick(i)
+                          }}
+                          aria-expanded={servicesExpanded[i]}
+                          aria-label="More"
+                        >
+                          <GridContainer>
+                            <GridItem className="linkText collapsedText">
+                              More
+                            </GridItem>
+                            <GridItem className="linkText expandedText">
+                              Less
+                            </GridItem>
+                            <GridItem>
+                              <ArrowDropDownIcon />
+                            </GridItem>
+                          </GridContainer>
+                        </button>
+                      </GridItem>
+                    </>
+                  )}
                 </GridContainer>
               </GridContainer>
             )
@@ -142,3 +146,5 @@ export default ServicesListSection => {
     </Card>
   )
 }
+
+export default ServicesListSection

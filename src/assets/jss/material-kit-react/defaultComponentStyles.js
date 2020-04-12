@@ -38,7 +38,7 @@ const defaultComponentStyles = {
         fontSize: defaultDesktopFontSize,
       },
     },
-    "& ..MuiCollapse-container": {
+    "& .MuiCollapse-container": {
       width: "100%",
     },
     "& .rpmg-list-wrapper": {

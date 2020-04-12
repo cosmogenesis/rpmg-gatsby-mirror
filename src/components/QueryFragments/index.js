@@ -65,3 +65,18 @@ export const siteVariables = graphql`
     producer
   }
 `
+
+export const serviceCollections = graphql`
+  fragment ServiceCollections on ContentfulServiceCollectionProgramOrServiceCategory {
+    description {
+      description
+    }
+    publicName
+    services {
+      description {
+        description
+      }
+      publicName
+    }
+  }
+`
