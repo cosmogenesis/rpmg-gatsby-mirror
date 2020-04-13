@@ -1,29 +1,18 @@
 import React, { Component } from "react"
 import Carousel from "react-slick"
 
-import clsx from "clsx"
 import classNames from "classnames"
 //import { MemoryRouter as Router } from 'react-router';
 import { Link } from "gatsby"
 
-// core components
+// custom components
 import Card from "src/components/Card/Card.js"
 import CardBody from "src/components/Card/CardBody.js"
 import CardHeader from "src/components/Card/CardHeader.js"
 import CustomButton from "src/components/CustomButtons/Button.js"
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
+import ServiceCollection from "src/components/ServiceCollection"
 
-import GridContainer from "src/components/Grid/GridContainer"
-import GridItem from "src/components/Grid/GridItem"
-
-import {
-  Typography,
-  List,
-  ListItem,
-  ListSubheader,
-  Collapse,
-  CardActions,
-} from "@material-ui/core"
+import { CardActions } from "@material-ui/core"
 
 const carouselSettings = {
   dots: false,
@@ -51,7 +40,6 @@ export default class PromotedProgramsCards extends Component {
     this.pause = this.pause.bind(this)
 
     this.play = this.play.bind(this)
-    this.handleExpandClick = this.handleExpandClick.bind(this)
     this.state = {
       expanded: false,
     }
@@ -63,9 +51,6 @@ export default class PromotedProgramsCards extends Component {
     }
   }
 
-  handleExpandClick() {
-    this.setState({ expanded: !this.state.expanded })
-  }
   play() {
     this.slider.slickPlay()
   }
@@ -93,79 +78,12 @@ export default class PromotedProgramsCards extends Component {
                   this.classes.cardBody
                 )}
               >
-                <GridContainer direction="column">
-                  <GridItem>
-                    <Typography gutterBottom variant="h4">
-                      {collection.publicName}
-                    </Typography>
-                  </GridItem>
-                  <GridItem className="rpmg-promoted-description">
-                    <Typography gutterBottom variant="body1">
-                      {collection.description.description}
-                    </Typography>
-                  </GridItem>
+                <ServiceCollection
+                  collection={collection}
+                  classes={this.classes}
+                  isList={false}
+                />
 
-                  <GridContainer item spacing={0}>
-                    <List
-                      className="rpmg-list-wrapper"
-                      disablePadding
-                      subheader={
-                        <ListSubheader disableGutters>Services:</ListSubheader>
-                      }
-                    >
-                      {collection.services.map((service, i) => {
-                        if (i < 4) {
-                          return (
-                            <ListItem key={i}>{service.publicName}</ListItem>
-                          )
-                        }
-                      })}
-                    </List>
-                    {collection.services.length > 4 && (
-                      <>
-                        <Collapse
-                          in={this.state.expanded}
-                          timeout="auto"
-                          unmountOnExit
-                        >
-                          <List className="rpmg-list-wrapper" disablePadding>
-                            {collection.services.map((service, i) => {
-                              if (i >= 4) {
-                                return (
-                                  <ListItem key={i}>
-                                    {service.publicName}
-                                  </ListItem>
-                                )
-                              }
-                            })}
-                          </List>
-                        </Collapse>
-                        <GridItem className={this.classes.learnMoreLinkWrap}>
-                          <button
-                            className={clsx(this.classes.expand, {
-                              [this.classes.expandOpen]: this.state.expanded,
-                            })}
-                            onClick={this.handleExpandClick}
-                            aria-expanded={this.state.expanded}
-                            aria-label="More"
-                          >
-                            <GridContainer>
-                              <GridItem className="linkText collapsedText">
-                                More
-                              </GridItem>
-                              <GridItem className="linkText expandedText">
-                                Less
-                              </GridItem>
-                              <GridItem>
-                                <ArrowDropDownIcon />
-                              </GridItem>
-                            </GridContainer>
-                          </button>
-                        </GridItem>
-                      </>
-                    )}
-                  </GridContainer>
-                </GridContainer>
                 <CardActions className={this.cardClasses.buttonWrap}>
                   <Link to="/services/">
                     <CustomButton
