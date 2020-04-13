@@ -1,29 +1,19 @@
 import React, { Component } from "react"
 import Carousel from "react-slick"
-
-import clsx from "clsx"
 import classNames from "classnames"
-//import { MemoryRouter as Router } from 'react-router';
+
 import { Link } from "gatsby"
 
-// core components
+// custom Components
 import Card from "src/components/Card/Card.js"
 import CardBody from "src/components/Card/CardBody.js"
 import CardHeader from "src/components/Card/CardHeader.js"
 import CustomButton from "src/components/CustomButtons/Button.js"
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
-
 import GridContainer from "src/components/Grid/GridContainer"
 import GridItem from "src/components/Grid/GridItem"
+import ServicesList from "src/components/ServicesList"
 
-import {
-  Typography,
-  List,
-  ListItem,
-  ListSubheader,
-  Collapse,
-  CardActions,
-} from "@material-ui/core"
+import { Typography, CardActions } from "@material-ui/core"
 
 const carouselSettings = {
   dots: false,
@@ -49,20 +39,12 @@ export default class PromotedStaffCards extends Component {
 
     this.pause = this.pause.bind(this)
     this.play = this.play.bind(this)
-    this.handleExpandClick = this.handleExpandClick.bind(this)
-    this.state = {
-      expanded: false,
-    }
   }
   componentDidMount() {
     if (this.delay !== false) {
       this.pause()
       setTimeout(this.play, this.delay)
     }
-  }
-
-  handleExpandClick() {
-    this.setState({ expanded: !this.state.expanded })
   }
 
   play() {
@@ -114,67 +96,10 @@ export default class PromotedStaffCards extends Component {
                       {bio.bioTeaser}
                     </Typography>
                   </GridItem>
-
-                  <GridContainer item spacing={0}>
-                    <List
-                      className="rpmg-list-wrapper"
-                      disablePadding
-                      subheader={
-                        <ListSubheader disableGutters>Services:</ListSubheader>
-                      }
-                    >
-                      {bio.services.map((service, i) => {
-                        if (i < 4) {
-                          return (
-                            <ListItem key={i}>{service.publicName}</ListItem>
-                          )
-                        }
-                      })}
-                    </List>
-                    {bio.services.length > 4 && (
-                      <>
-                        <Collapse
-                          in={this.state.expanded}
-                          timeout="auto"
-                          unmountOnExit
-                        >
-                          <List className="rpmg-list-wrapper" disablePadding>
-                            {bio.services.map((service, i) => {
-                              if (i >= 4) {
-                                return (
-                                  <ListItem key={i}>
-                                    {service.publicName}
-                                  </ListItem>
-                                )
-                              }
-                            })}
-                          </List>
-                        </Collapse>
-                        <GridItem className={this.classes.learnMoreLinkWrap}>
-                          <button
-                            className={clsx(this.classes.expand, {
-                              [this.classes.expandOpen]: this.state.expanded,
-                            })}
-                            onClick={this.handleExpandClick}
-                            aria-expanded={this.state.expanded}
-                            aria-label="More"
-                          >
-                            <GridContainer>
-                              <GridItem className="linkText collapsedText">
-                                More
-                              </GridItem>
-                              <GridItem className="linkText expandedText">
-                                Less
-                              </GridItem>
-                              <GridItem>
-                                <ArrowDropDownIcon />
-                              </GridItem>
-                            </GridContainer>
-                          </button>
-                        </GridItem>
-                      </>
-                    )}
-                  </GridContainer>
+                  <ServicesList
+                    services={bio.services}
+                    classes={this.classes}
+                  />
                 </GridContainer>
                 <CardActions className={this.cardClasses.buttonWrap}>
                   <Link to="/staff/">

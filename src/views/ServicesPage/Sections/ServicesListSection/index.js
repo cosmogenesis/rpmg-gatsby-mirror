@@ -31,6 +31,7 @@ const ServicesListSection = ({ headerText, serviceCollections }) => {
           {serviceCollections.map((collection, i) => {
             return (
               <ServiceCollection
+                key={i}
                 collection={collection}
                 classes={classes}
                 isList={true}
