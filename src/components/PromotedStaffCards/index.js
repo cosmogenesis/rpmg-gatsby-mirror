@@ -11,7 +11,7 @@ import CardHeader from "src/components/Card/CardHeader.js"
 import CustomButton from "src/components/CustomButtons/Button.js"
 import GridContainer from "src/components/Grid/GridContainer"
 import GridItem from "src/components/Grid/GridItem"
-import ServicesList from "src/components/ServicesList"
+import Professional from "src/components/Professional"
 
 import { Typography, CardActions } from "@material-ui/core"
 
@@ -75,7 +75,7 @@ export default class PromotedStaffCards extends Component {
           {...this.carouselSettings}
           className={this.cardClasses.cardCarousel}
         >
-          {this.featured.professionals.map((bio, i) => {
+          {this.featured.professionals.map((professional, i) => {
             return (
               <CardBody
                 key={i}
@@ -85,22 +85,11 @@ export default class PromotedStaffCards extends Component {
                   this.classes.cardBody
                 )}
               >
-                <GridContainer direction="column">
-                  <GridItem>
-                    <Typography gutterBottom variant="h4">
-                      {this.getFullName(bio)}
-                    </Typography>
-                  </GridItem>
-                  <GridItem className="rpmg-promoted-description">
-                    <Typography gutterBottom variant="body1">
-                      {bio.bioTeaser}
-                    </Typography>
-                  </GridItem>
-                  <ServicesList
-                    services={bio.services}
-                    classes={this.classes}
-                  />
-                </GridContainer>
+                <Professional
+                  professional={professional}
+                  classes={this.classes}
+                />
+
                 <CardActions className={this.cardClasses.buttonWrap}>
                   <Link to="/staff/">
                     <CustomButton

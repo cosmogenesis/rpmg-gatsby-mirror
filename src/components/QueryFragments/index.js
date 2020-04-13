@@ -39,18 +39,31 @@ export const featuredServices = graphql`
     }
   }
 `
+export const professional = graphql`
+  fragment Professional on ContentfulProfessional {
+    bio {
+      bio
+    }
+    bioTeaser
+    salutation
+    lastName
+    firstName
+    suffix
+    headshot {
+      file {
+        url
+      }
+    }
+    services {
+      publicName
+    }
+  }
+`
 
 export const featuredProfessionals = graphql`
   fragment FeaturedProfessionals on ContentfulFeaturedProfessionals {
     professionals {
-      bioTeaser
-      salutation
-      lastName
-      firstName
-      suffix
-      services {
-        publicName
-      }
+      ...Professional
     }
   }
 `

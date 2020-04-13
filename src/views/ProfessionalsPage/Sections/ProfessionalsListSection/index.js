@@ -27,23 +27,7 @@ import cardStyles from "src/assets/jss/material-kit-react/components/cardStyle"
 const useStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-const professionals = [
-  {
-    name: "Dr. Sukh Kalsa",
-    photo: true,
-  },
-  {
-    name: "Dr. Bruce Heischober",
-    photo: true,
-  },
-  {
-    name: "Dr. Robert Summerour",
-    photo: false,
-  },
-  { name: "Christianne Zah", photo: true },
-]
-
-export default ProfessionalsListSection => {
+const ProfessionalsListSection = ({ professionals, headerText }) => {
   const classes = useStyles()
   const cardClasses = useCardStyles()
 
@@ -62,7 +46,7 @@ export default ProfessionalsListSection => {
 
   return (
     <Card className={classNames(classes.professionalsListSection)}>
-      <CardHeader color="primary">Our Health Professionals</CardHeader>
+      <CardHeader color="primary">{headerText}</CardHeader>
       <CardBody
         className={classNames(
           "cardBody",
@@ -175,3 +159,5 @@ export default ProfessionalsListSection => {
     </Card>
   )
 }
+
+export default ProfessionalsListSection
