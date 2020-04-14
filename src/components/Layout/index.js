@@ -15,6 +15,19 @@ import HeaderLinksLeft from "src/components/Header/HeaderLinksLeft.js"
 import Parallax from "src/components/Parallax/Parallax.js"
 import { siteVariables } from "../QueryFragments"
 
+const getMobileHeroImagePath = scaffolding => {
+  /** if mobile image provided use provided image
+   * otherwise use contentful API to scale down */
+  if (scaffolding.heroImageMobile) {
+    return scaffolding.heroImageMobile.file.url
+  } else {
+    /** UPDATE: contentful image API is not producing images with good quality.
+     * Use desktop image for mobile for now. GM */
+    //return scaffolding.heroImageDesktop.fluid.src
+    return scaffolding.heroImageDesktop.file.url
+  }
+}
+
 export default function Layout({
   pageClasses,
   location,
@@ -22,7 +35,7 @@ export default function Layout({
   SiteVariables,
   ...rest
 }) {
-  //const isMobile = useDetectMobile()
+  const mobileHeroImagePage = getMobileHeroImagePath(scaffolding)
 
   return (
     <div className={pageClasses.body}>
@@ -39,7 +52,10 @@ export default function Layout({
         SiteVariables={siteVariables}
         {...rest}
       />
-      <Parallax image={scaffolding.heroImageDesktop.file.url}>
+      <Parallax
+        desktopImage={scaffolding.heroImageDesktop.file.url}
+        mobileImage={mobileHeroImagePage}
+      >
         <div className={pageClasses.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={12}></GridItem>

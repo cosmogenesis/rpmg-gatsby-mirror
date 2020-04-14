@@ -7,12 +7,16 @@ const professionalStyles = {
     "&:nth-child(even)": {
       backgroundColor: rowBgColor,
     },
-    "& .photo": {
-      order: "1",
+    "&:nth-child(odd)": {
+      "& .photo": {
+        order: "1",
+      },
+      "& .name-bio": {
+        paddingLeft: "0",
+        paddingRight: "1rem",
+      },
     },
     "& .name-bio": {
-      paddingLeft: "0",
-      paddingRight: "1rem",
       "& .MuiGrid-item": {
         width: "100%",
       },

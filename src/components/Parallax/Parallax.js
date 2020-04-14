@@ -35,7 +35,15 @@ export default function Parallax(props) {
     var windowScrollTop = window.pageYOffset / 3
     setTransform("translate3d(0," + windowScrollTop + "px,0)")
   }
-  const { filter, className, children, style, image, small } = props
+  const {
+    filter,
+    className,
+    children,
+    style,
+    desktopImage,
+    mobileImage,
+    small,
+  } = props
   const classes = useStyles()
   const parallaxClasses = classNames({
     [classes.parallax]: true,
@@ -44,16 +52,32 @@ export default function Parallax(props) {
     [className]: className !== undefined,
   })
   return (
-    <div
-      className={parallaxClasses}
-      style={{
-        ...style,
-        backgroundImage: "url(" + image + ")",
-        transform: transform,
-      }}
-    >
-      {children}
-    </div>
+    <>
+      <div className={classNames(parallaxClasses, "rpmg-desktop")}>
+        <div
+          className="rpmg-img"
+          style={{
+            ...style,
+            backgroundImage: "url(" + desktopImage + ")",
+            transform: transform,
+          }}
+        >
+          {children}
+        </div>
+      </div>
+      <div className={classNames(parallaxClasses, "rpmg-mobile")}>
+        <div
+          className="rpmg-img"
+          style={{
+            ...style,
+            backgroundImage: "url(" + mobileImage + ")",
+            transform: transform,
+          }}
+        >
+          {children}
+        </div>
+      </div>
+    </>
   )
 }
 

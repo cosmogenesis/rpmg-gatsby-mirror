@@ -21,7 +21,7 @@ const getFullName = professional => {
 }
 
 const getHeadshotPath = professional => {
-  return null
+  return professional.headshot ? professional.headshot.file.url : false
 }
 
 const Professional = ({ professional, classes, useTeaser }) => {

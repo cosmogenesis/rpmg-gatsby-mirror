@@ -1,3 +1,5 @@
+import { graphql } from "gatsby"
+
 export const siteMetaData = graphql`
   fragment SiteMetaData on Site {
     siteMetadata {
@@ -16,6 +18,9 @@ export const pageScaffolding = graphql`
     heroImageDesktop {
       file {
         url
+      }
+      fluid(maxWidth: 500, quality: 100) {
+        src
       }
     }
     heroImageMobile {
