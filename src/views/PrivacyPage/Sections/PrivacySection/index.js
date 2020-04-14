@@ -1,18 +1,15 @@
-import React, { useState } from "react"
+import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-
-import clsx from "clsx"
 import classNames from "classnames"
 
-// core components
+// custome components
 import Card from "src/components/Card/Card.js"
 import CardBody from "src/components/Card/CardBody.js"
 import CardHeader from "src/components/Card/CardHeader.js"
 import GridContainer from "src/components/Grid/GridContainer.js"
 
+// core components
 import { Typography, List, ListItem } from "@material-ui/core"
-
-import GlobalVars from "src/assets/js/GlobalVariables"
 
 import styles from "src/assets/jss/material-kit-react/views/privacyPage/sections/privacySectionStyles"
 import cardStyles from "src/assets/jss/material-kit-react/components/cardStyle"

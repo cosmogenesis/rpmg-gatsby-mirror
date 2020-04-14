@@ -1,15 +1,9 @@
-import { rowBgColor } from "src/assets/jss/material-kit-react.js"
 import defaultComponentStyles from "src/assets/jss/material-kit-react/defaultComponentStyles"
 import professionalStyles from "src/assets/jss/material-kit-react/components/professionalStyles"
 
-const professionalsListSectionStyles = theme => ({
+const promotedStaffStyles = theme => ({
   ...defaultComponentStyles,
   ...professionalStyles,
-  professionalsListSection: {
-    "& .cardBody": {
-      padding: "0",
-    },
-  },
 })
 
-export default professionalsListSectionStyles
+export default promotedStaffStyles

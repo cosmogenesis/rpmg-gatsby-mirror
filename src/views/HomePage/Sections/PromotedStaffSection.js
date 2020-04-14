@@ -4,7 +4,7 @@ import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 
 import cardStyles from "src/assets/jss/material-kit-react/components/cardStyle.js"
-import styles from "src/assets/jss/material-kit-react/views/homePage/sections/promotedStaffStyle.js"
+import styles from "src/assets/jss/material-kit-react/components/promotedStaffStyles.js"
 import PromotedStaffCards from "src/components/PromotedStaffCards"
 
 const usePromotedStyles = makeStyles(styles)

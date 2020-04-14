@@ -1,4 +1,6 @@
 import React from "react"
+// nodejs library that concatenates classes
+import classNames from "classnames"
 
 // custom Components
 import GridContainer from "src/components/Grid/GridContainer"
@@ -10,27 +12,52 @@ import { Typography } from "@material-ui/core"
 const getFullName = professional => {
   let full = professional.salutation + " "
   full += professional.firstName + " "
-  full += professional.lastName + " "
+  full += professional.lastName + ", "
   professional.suffix.forEach((s, i) => {
     full += s
-    full += i < professional.suffix.length - 1 ? ", " : ""
+    full += i < professional.suffix.length - 1 ? " " : ""
   })
   return full
 }
 
-const Professional = ({ professional, classes }) => {
+const getHeadshotPath = professional => {
+  return null
+}
+
+const Professional = ({ professional, classes, useTeaser }) => {
+  const headshotPath = getHeadshotPath(professional)
+  const fullName = getFullName(professional)
+  const rowClassNames = {
+    [classes.rpmgProfessional]: true,
+    "with-photo": headshotPath,
+    "in-list": !useTeaser,
+  }
+
   return (
-    <GridContainer direction="column">
-      <GridItem>
-        <Typography gutterBottom variant="h4">
-          {getFullName(professional)}
-        </Typography>
-      </GridItem>
-      <GridItem className="rpmg-promoted-description">
-        <Typography gutterBottom variant="body1">
-          {professional.bioTeaser}
-        </Typography>
-      </GridItem>
+    <GridContainer direction="row" className={classNames(rowClassNames)}>
+      <GridContainer item direction="row" className="name-bio-photo-row">
+        {headshotPath && (
+          <GridItem className="photo">
+            <img
+              src={headshotPath}
+              alt={"Photo of " + fullName}
+              className={classes.imgRoundedCircle + " " + classes.imgFluid}
+            />
+          </GridItem>
+        )}
+        <GridContainer item direction="row" className="name-bio">
+          <GridItem>
+            <Typography gutterBottom variant="h5">
+              {fullName}
+            </Typography>
+          </GridItem>
+          <GridItem>
+            <Typography gutterBottom variant="body2">
+              {useTeaser ? professional.bioTeaser : professional.bio.bio}
+            </Typography>
+          </GridItem>
+        </GridContainer>
+      </GridContainer>
       <ServicesList services={professional.services} classes={classes} />
     </GridContainer>
   )

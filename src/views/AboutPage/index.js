@@ -44,6 +44,7 @@ export default function AboutPage(props) {
         <PromotedStaffSection
           siteVariables={props.siteVariables}
           featuredProfessionals={featuredProfessionals}
+          useTeaser={true}
         />
       </GridItem>
     </Layout>
