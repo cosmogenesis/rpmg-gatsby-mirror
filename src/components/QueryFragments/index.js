@@ -98,6 +98,44 @@ export const serviceCollections = graphql`
     }
   }
 `
+export const homePageFragment = graphql`
+  fragment HomePageFragment on ContentfulPageHomepage {
+    scaffolding {
+      ...PageScaffolding
+    }
+    featuredServices {
+      ...FeaturedServicesCollections
+    }
+    featuredProfessionals {
+      ...FeaturedProfessionals
+    }
+  }
+`
+
+export const servicesPageFragment = graphql`
+  fragment ServicesPageFragment on ContentfulPageServicesListing {
+    scaffolding {
+      ...PageScaffolding
+    }
+    headerText_serviceListing
+    featuredProfessionals {
+      ...FeaturedProfessionals
+    }
+  }
+`
+
+export const professionalsPageFragment = graphql`
+  fragment ProfessionalsPageFragment on ContentfulPageProfessionalsListing {
+    scaffolding {
+      ...PageScaffolding
+    }
+    professionalsListingHeaderTitle
+    featuredServices {
+      ...FeaturedServicesCollections
+    }
+  }
+`
+
 export const patientResourcesPage = graphql`
   fragment PatientResourcesPage on ContentfulPagePatientResources {
     scaffolding {
@@ -144,6 +182,26 @@ export const faqContactPage = graphql`
     topics {
       topic
       email
+    }
+  }
+`
+export const aboutPageFragment = graphql`
+  fragment AboutPageFragment on ContentfulPageAboutUs {
+    scaffolding {
+      ...PageScaffolding
+    }
+    headerText_aboutUsSection
+    subheaderText_aboutUsSubsection
+    subheaderTitle_contactLinks
+    address
+    phone
+    text_aboutUs {
+      childMarkdownRemark {
+        html
+      }
+    }
+    featuredProfessionals {
+      ...FeaturedProfessionals
     }
   }
 `

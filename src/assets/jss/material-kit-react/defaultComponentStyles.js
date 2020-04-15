@@ -32,7 +32,7 @@ const defaultComponentStyles = {
         fontSize: defaultDesktopFontSize,
       },
     },
-    "& .MuiTypography-body1": {
+    "& .MuiTypography-body1, & .MuiTypography-body1 p": {
       fontSize: getCalcRem(13),
       [theme.breakpoints.up("md")]: {
         fontSize: defaultDesktopFontSize,

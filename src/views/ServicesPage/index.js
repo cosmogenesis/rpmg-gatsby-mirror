@@ -1,9 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {
-  PageScaffolding,
+  ServicesPageFragment,
   ServiceCollections,
-  FeaturedServicesCollections,
 } from "src/components/QueryFragments"
 
 import Layout from "src/components/Layout"
@@ -30,13 +29,7 @@ export default function ServicesPage(props) {
           }
         }
         contentfulPageServicesListing {
-          scaffolding {
-            ...PageScaffolding
-          }
-          headerText_serviceListing
-          featuredProfessionals {
-            ...FeaturedProfessionals
-          }
+          ...ServicesPageFragment
         }
       }
     `

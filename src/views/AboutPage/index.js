@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {
-  PageScaffolding,
+  AboutPageFragment,
   FeaturedProfessionals,
 } from "src/components/QueryFragments"
 
@@ -22,23 +22,20 @@ export default function AboutPage(props) {
     graphql`
       query {
         contentfulPageAboutUs {
-          scaffolding {
-            ...PageScaffolding
-          }
-          featuredProfessionals {
-            ...FeaturedProfessionals
-          }
+          ...AboutPageFragment
         }
       }
     `
   )
 
-  const { scaffolding, featuredProfessionals } = contentfulPageAboutUs
+  const { scaffolding, featuredProfessionals, ...rest } = contentfulPageAboutUs
+  console.log(rest)
+
   const pageClasses = useStyles()
   return (
     <Layout pageClasses={pageClasses} scaffolding={scaffolding} {...props}>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
-        <AboutSection />
+        <AboutSection {...rest} />
       </GridItem>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
         <PromotedStaffSection

@@ -131,7 +131,7 @@ const ResourcesSection = ({ pageData }) => {
                           title={"Navigate to " + r.publicName}
                           target="_blank"
                         >
-                          more >
+                          visit >
                         </a>
                       </GridItem>
                     </GridContainer>

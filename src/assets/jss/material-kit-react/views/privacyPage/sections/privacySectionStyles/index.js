@@ -1,22 +1,22 @@
-import defaultComponentStyles from "src/assets/jss/material-kit-react/defaultComponentStyles";
-import { getCalcRem } from "src/assets/jss/material-kit-react.js";
-import { Autorenew } from "@material-ui/icons";
+import defaultComponentStyles from "src/assets/jss/material-kit-react/defaultComponentStyles"
+import { getCalcRem } from "src/assets/jss/material-kit-react.js"
+import { Autorenew } from "@material-ui/icons"
 
 const privacySectionStyles = theme => ({
   ...defaultComponentStyles,
   privacyPolicySection: {
-    "& .MuiTypography-body1, & .MuiTypography-h5": {
-      marginBottom: "1rem"
+    "& .MuiTypography-body1, & .MuiTypography-body1 p, & .MuiTypography-h5": {
+      marginBottom: "1rem",
     },
     "& .rpmg-list-wrapper": {
       width: "auto",
       "& li": {
         marginLeft: "0",
         marginBottom: "0",
-        flex: "none"
-      }
-    }
-  }
-});
+        flex: "none",
+      },
+    },
+  },
+})
 
-export default privacySectionStyles;
+export default privacySectionStyles

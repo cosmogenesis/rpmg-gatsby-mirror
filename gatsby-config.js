@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `Riverside Psychiatric Medical Group`,
     siteRootURL: `https://www.rivpsych.com`,
-    description: `This is the description found in the gatsby config files`,
+    description: `This field is not used. The value is in the CMS`,
     author: `@gary_mcdaniel`,
   },
   plugins: [
@@ -22,6 +22,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
+    `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -32,7 +33,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.ico`, // This path is relative to the root of the site.
       },
     },
     {

@@ -1,8 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {
-  PageScaffolding,
-  FeaturedServicesCollections,
+  ProfessionalsPageFragment,
   Professional,
 } from "src/components/QueryFragments"
 import { makeStyles } from "@material-ui/core/styles"
@@ -24,13 +23,7 @@ export default function ProfessionalsPage(props) {
     graphql`
       query {
         contentfulPageProfessionalsListing {
-          scaffolding {
-            ...PageScaffolding
-          }
-          professionalsListingHeaderTitle
-          featuredServices {
-            ...FeaturedServicesCollections
-          }
+          ...ProfessionalsPageFragment
         }
         allContentfulProfessional {
           nodes {

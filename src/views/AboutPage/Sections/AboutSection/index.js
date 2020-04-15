@@ -17,13 +17,21 @@ import cardStyles from "src/assets/jss/material-kit-react/components/cardStyle"
 const useStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-export default AboutSection => {
+const AboutSection = ({
+  headerText_aboutUsSection,
+  subheaderText_aboutUsSubsection,
+  subheaderTitle_contactLinks,
+  address,
+  phone,
+  text_aboutUs,
+}) => {
   const classes = useStyles()
   const cardClasses = useCardStyles()
+  console.log(text_aboutUs)
 
   return (
     <Card className={classNames(classes.aboutSection)}>
-      <CardHeader color="primary">About Us</CardHeader>
+      <CardHeader color="primary">{headerText_aboutUsSection}</CardHeader>
       <CardBody
         className={classNames(
           "cardBody",
@@ -34,56 +42,46 @@ export default AboutSection => {
         <GridContainer direction="column">
           <GridItem className="rpmg-about-description">
             <Typography variant="h4" gutterBottom>
-              What Makes Us Special
+              {subheaderText_aboutUsSubsection}
             </Typography>
-            <Typography variant="body1" gutterBottom>
-              Riverside Psychiatric Medical Group is a premier psychiatric
-              medical group in the Inland Empire founded by Robert B. Summerour,
-              M.D. in 1982.
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              The group offers a full spectrum of out-patient mental health
-              services provided by psychiatrists, psychologists and LSCW and MFT
-              counselors. The clinicians work in collaboration to provide
-              comprehensive treatment to our patients, their families and the
-              community. Services provided include psychiatric evaluation and
-              treatment, medication management, addiction detoxification, child
-              and adolescent psychological testing and treatment,
-              neuropsychological testing and geriatric issues.{" "}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              Inpatient, partial hospitalization and intensive outpatient
-              treatment is provided through collaboration with the psychiatric
-              and chemical dependency inpatient facility located in close
-              proximity to Riverside Psychiatric Medical Group.
-            </Typography>
+            <div
+              className="MuiTypography-body1"
+              dangerouslySetInnerHTML={{
+                __html: text_aboutUs.childMarkdownRemark.html,
+              }}
+            />
           </GridItem>
           <GridItem className="rpmg-about-contact">
             <Typography variant="h4" gutterBottom>
-              Say Hello
+              {subheaderTitle_contactLinks}
             </Typography>
             <Typography variant="body1" gutterBottom>
               <a
-                href="https://maps.google.com/?q=5887%20Brockton%20Ave%2C%20Riverside%2C%20CA%2092506"
+                href={
+                  "https://maps.google.com/?q" + encodeURIComponent(address)
+                }
                 title="Open address in map application"
                 target="_blank"
               >
                 <a
-                  href="https://maps.apple.com/maps?q=5887%20Brockton%20Ave%2C%20Riverside%2C%20CA%2092506"
+                  href={
+                    "https://maps.apple.com/maps?q=" +
+                    encodeURIComponent(address)
+                  }
                   title="Open address in map application"
                   target="_blank"
                 >
-                  5887 Brockton Ave, Riverside, CA 92506
+                  {address}
                 </a>
               </a>
             </Typography>
             <Typography variant="body1" gutterBottom>
               <a
-                href="tel:1-951-275-8500"
-                title="Open in phone application"
+                href={"tel:" + phone}
+                title={"Open in phone application and call " + phone}
                 target="_blank"
               >
-                (951) 275-8500
+                {phone}
               </a>
             </Typography>
             <Typography variant="body1" gutterBottom>
@@ -97,3 +95,5 @@ export default AboutSection => {
     </Card>
   )
 }
+
+export default AboutSection

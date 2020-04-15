@@ -1,10 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import {
-  PageScaffolding,
-  FeaturedServicesCollections,
-  FeaturedProfessionals,
-} from "src/components/QueryFragments"
+import { HomePageFragment } from "src/components/QueryFragments"
 
 import { makeStyles } from "@material-ui/core/styles"
 import GridItem from "src/components/Grid/GridItem.js"
@@ -22,15 +18,7 @@ export default function HomePage(props) {
     graphql`
       query {
         contentfulPageHomepage {
-          scaffolding {
-            ...PageScaffolding
-          }
-          featuredServices {
-            ...FeaturedServicesCollections
-          }
-          featuredProfessionals {
-            ...FeaturedProfessionals
-          }
+          ...HomePageFragment
         }
       }
     `
