@@ -1,9 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import {
-  PageScaffolding,
-  FeaturedServicesCollections,
-} from "src/components/QueryFragments"
+import { PatientResourcesPage } from "src/components/QueryFragments"
 import { makeStyles } from "@material-ui/core/styles"
 import Layout from "src/components/Layout"
 import GridItem from "src/components/Grid/GridItem.js"
@@ -20,24 +17,23 @@ export default function ResourcesPage(props) {
     graphql`
       query {
         contentfulPagePatientResources {
-          scaffolding {
-            ...PageScaffolding
-          }
-          featuredServices {
-            ...FeaturedServicesCollections
-          }
+          ...PatientResourcesPage
         }
       }
     `
   )
 
-  const { scaffolding, featuredServices } = contentfulPagePatientResources
+  const {
+    scaffolding,
+    featuredServices,
+    ...rest
+  } = contentfulPagePatientResources
 
   const pageClasses = useStyles()
   return (
     <Layout pageClasses={pageClasses} scaffolding={scaffolding} {...props}>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
-        <ResourcesSection />
+        <ResourcesSection pageData={rest} />
       </GridItem>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
         <PromotedProgramsSection

@@ -17,26 +17,18 @@ import cardStyles from "src/assets/jss/material-kit-react/components/cardStyle"
 const useStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-const forms = [
-  {
-    value: "Registration Form",
-    path: "http://urltoform",
-  },
-  {
-    value: "Authorization Form",
-    path: "http://urltoform",
-  },
-  {
-    value: "Form 2",
-    path: "http://urltoform",
-  },
-  {
-    value: "Form 3",
-    path: "http://urltoform",
-  },
-]
+const initiateDownload = path => {
+  if (!document) return
+  const link = document.createElement("a")
+  link.href = "https:" + path
+  link.setAttribute("download", true)
+  link.target = "_blank"
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
 
-export default ResourcesSection => {
+const ResourcesSection = ({ pageData }) => {
   const classes = useStyles()
   const cardClasses = useCardStyles()
 
@@ -46,9 +38,18 @@ export default ResourcesSection => {
     setFormSelection(event.target.value)
   }
 
+  const {
+    pageHeaderTitle,
+    sectionHeaderTitle_downloads,
+    instructions,
+    downloadableDocuments,
+    sectionHeaderText_resources,
+    resources,
+  } = pageData
+
   return (
     <Card className={classes.resourcesSection}>
-      <CardHeader color="primary">Patient Resources</CardHeader>
+      <CardHeader color="primary">{pageHeaderTitle}</CardHeader>
       <CardBody
         className={classNames(
           "cardBody",
@@ -59,11 +60,10 @@ export default ResourcesSection => {
         <GridContainer direction="column">
           <GridItem>
             <Typography variant="h4" gutterBottom>
-              Download Forms
+              {sectionHeaderTitle_downloads}
             </Typography>
             <Typography variant="body1" gutterBottom>
-              Select a form to download using the select box below. The form
-              will automatically download once you make your selection.
+              {instructions.instructions}
             </Typography>
           </GridItem>
           <GridItem>
@@ -78,9 +78,16 @@ export default ResourcesSection => {
                   onChange={handleSelectChange}
                   helperText="Please select a topic"
                 >
-                  {forms.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.value}
+                  {pageData.downloadableDocuments.map((option, i) => (
+                    <MenuItem key={i} value={option.publicName}>
+                      <div
+                        style={{ width: "100%" }}
+                        onClick={() => {
+                          initiateDownload(option.file.file.url)
+                        }}
+                      >
+                        {option.publicName}
+                      </div>
                     </MenuItem>
                   ))}
                 </TextField>
@@ -89,51 +96,48 @@ export default ResourcesSection => {
           </GridItem>
           <GridItem className="rpmg-resource-listing">
             <Typography variant="h4" gutterBottom>
-              Resources
+              {sectionHeaderText_resources}
             </Typography>
             <GridContainer direction="column" component="ul">
-              <GridContainer item direction="row" component="li">
-                <GridItem className="rpmg-resource-name">
-                  Resource Name 1
-                </GridItem>
-                <GridItem>
-                  <a
-                    href="tel:1-951-275-8500"
-                    title="Open in phone application"
-                    target="_blank"
-                  >
-                    (951) 111-1234
-                  </a>
-                </GridItem>
-              </GridContainer>
-              <GridContainer item direction="row" component="li">
-                <GridItem className="rpmg-resource-name">
-                  Resource Name 2
-                </GridItem>
-                <GridItem>
-                  <a
-                    href="tel:1-951-275-8500"
-                    title="Open in phone application"
-                    target="_blank"
-                  >
-                    (951) 111-1235
-                  </a>
-                </GridItem>
-              </GridContainer>
-              <GridContainer item direction="row" component="li">
-                <GridItem className="rpmg-resource-name">
-                  Resource Name 3
-                </GridItem>
-                <GridItem>
-                  <a
-                    href="tel:1-951-275-8500"
-                    title="Open in phone application"
-                    target="_blank"
-                  >
-                    (951) 111-1236
-                  </a>
-                </GridItem>
-              </GridContainer>
+              {pageData.resources.map((r, i) => {
+                if (r.phone) {
+                  return (
+                    <GridContainer item direction="row" component="li">
+                      <GridItem className="rpmg-resource-name">
+                        {r.publicName}
+                      </GridItem>
+                      <GridItem>
+                        <a
+                          href={"tel:" + r.phone}
+                          title={
+                            "Open in phone application and call " + r.phone
+                          }
+                          target="_blank"
+                        >
+                          {r.phone}
+                        </a>
+                      </GridItem>
+                    </GridContainer>
+                  )
+                } else {
+                  return (
+                    <GridContainer item direction="row" component="li">
+                      <GridItem className="rpmg-resource-name">
+                        {r.publicName}
+                      </GridItem>
+                      <GridItem>
+                        <a
+                          href={r.url}
+                          title={"Navigate to " + r.publicName}
+                          target="_blank"
+                        >
+                          more >
+                        </a>
+                      </GridItem>
+                    </GridContainer>
+                  )
+                }
+              })}
             </GridContainer>
           </GridItem>
         </GridContainer>
@@ -141,3 +145,5 @@ export default ResourcesSection => {
     </Card>
   )
 }
+
+export default ResourcesSection

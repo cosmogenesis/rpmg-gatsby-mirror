@@ -98,3 +98,32 @@ export const serviceCollections = graphql`
     }
   }
 `
+export const patientResourcesPage = graphql`
+  fragment PatientResourcesPage on ContentfulPagePatientResources {
+    scaffolding {
+      ...PageScaffolding
+    }
+    pageHeaderTitle
+    sectionHeaderTitle_downloads
+    sectionHeaderText_resources
+    instructions {
+      instructions
+    }
+    downloadableDocuments {
+      publicName
+      file {
+        file {
+          url
+        }
+      }
+    }
+    resources {
+      publicName
+      phone
+      url
+    }
+    featuredServices {
+      ...FeaturedServicesCollections
+    }
+  }
+`
