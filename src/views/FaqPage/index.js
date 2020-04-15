@@ -1,10 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import {
-  PageScaffolding,
-  FeaturedServicesCollections,
-  FeaturedProfessionals,
-} from "src/components/QueryFragments"
+import { FaqContactPage } from "src/components/QueryFragments"
 
 import { makeStyles } from "@material-ui/core/styles"
 import Layout from "src/components/Layout"
@@ -18,16 +14,11 @@ import styles from "src/assets/jss/material-kit-react/views/professionalsPage"
 const useStyles = makeStyles(styles)
 
 export default function FaqPage(props) {
-  const { contentfulPageServicesListing } = useStaticQuery(
+  const { contentfulPageFaqContactPage } = useStaticQuery(
     graphql`
       query {
-        contentfulPageServicesListing {
-          scaffolding {
-            ...PageScaffolding
-          }
-          featuredProfessionals {
-            ...FeaturedProfessionals
-          }
+        contentfulPageFaqContactPage {
+          ...FaqContactPage
         }
       }
     `
@@ -35,18 +26,25 @@ export default function FaqPage(props) {
 
   const {
     scaffolding,
-    featuredProfessionals,
-    //featuredServices,
-  } = contentfulPageServicesListing
+    headerText_ContactUsForm,
+    headerText_faqListing,
+    faqs,
+    instructions_contactUsForm,
+    topics,
+  } = contentfulPageFaqContactPage
 
   const pageClasses = useStyles()
   return (
     <Layout pageClasses={pageClasses} scaffolding={scaffolding} {...props}>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
-        <FaqSection />
+        <FaqSection sectionHeader={headerText_faqListing} faqs={faqs} />
       </GridItem>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
-        <ContactFormSection />
+        <ContactFormSection
+          sectionHeader={headerText_ContactUsForm}
+          instructions={instructions_contactUsForm}
+          topics={topics}
+        />
       </GridItem>
     </Layout>
   )

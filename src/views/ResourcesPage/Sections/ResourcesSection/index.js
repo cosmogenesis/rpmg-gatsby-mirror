@@ -102,7 +102,7 @@ const ResourcesSection = ({ pageData }) => {
               {pageData.resources.map((r, i) => {
                 if (r.phone) {
                   return (
-                    <GridContainer item direction="row" component="li">
+                    <GridContainer key={i} item direction="row" component="li">
                       <GridItem className="rpmg-resource-name">
                         {r.publicName}
                       </GridItem>

@@ -127,3 +127,23 @@ export const patientResourcesPage = graphql`
     }
   }
 `
+export const faqContactPage = graphql`
+  fragment FaqContactPage on ContentfulPageFaqContactPage {
+    scaffolding {
+      ...PageScaffolding
+    }
+    headerText_ContactUsForm
+    headerText_faqListing
+    faqs {
+      question
+      answer {
+        answer
+      }
+    }
+    instructions_contactUsForm
+    topics {
+      topic
+      email
+    }
+  }
+`

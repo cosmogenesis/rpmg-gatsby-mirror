@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import classNames from "classnames"
 
@@ -17,44 +17,40 @@ import cardStyles from "src/assets/jss/material-kit-react/components/cardStyle"
 const useStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-const topics = [
-  {
-    value: "Marriage and Family Services",
-    email: "joni@att.com",
-  },
-  {
-    value: "Drug Treatment Services",
-    email: "joni@att.com",
-  },
-  {
-    value: "Mental Illness Services",
-    email: "test@gmail.com",
-  },
-  {
-    value: "Administration",
-    email: "joni@att.com",
-  },
-]
-
-export default ContactFormSection => {
+const ContactFormSection = ({ sectionHeader, topics, instructions }) => {
   const classes = useStyles()
   const cardClasses = useCardStyles()
+  const commentField = useRef()
 
-  const [value, setValue] = React.useState("")
+  const [value, setValue] = useState("")
 
   const handleChange = event => {
     setValue(event.target.value)
   }
 
-  const [topic, setSelectionOption] = React.useState()
+  const [topic, setSelectionOption] = useState("")
 
   const handleSelectChange = event => {
     setSelectionOption(event.target.value)
   }
 
+  const initiateEmail = () => {
+    if (!document) return
+
+    const link = document.createElement("a")
+    let path = "mailto:" + topics[topic].email
+    path +=
+      "?subject=" + encodeURI("Question regarding: " + topics[topic].topic)
+    path += "&body=" + encodeURI(commentField.current.value)
+    link.href = path
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   return (
     <Card className={classNames(classes.contactFormSection)}>
-      <CardHeader color="primary">Contact Us</CardHeader>
+      <CardHeader color="primary">{sectionHeader}</CardHeader>
       <CardBody
         className={classNames(
           "cardBody",
@@ -65,10 +61,7 @@ export default ContactFormSection => {
         <GridContainer direction="column">
           <GridItem>
             <Typography variant="body1" gutterBottom>
-              If your questions were not answer in the FAQ section on this page
-              then please select a topic in the form below and submit your
-              question. By selecting a topic, your question will be routed to
-              the correct person. We will respond in 24 - 48 hours.
+              {instructions}
             </Typography>
           </GridItem>
           <GridItem>
@@ -83,9 +76,9 @@ export default ContactFormSection => {
                   onChange={handleSelectChange}
                   helperText="Please select a topic"
                 >
-                  {topics.map(option => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.value}
+                  {topics.map((option, i) => (
+                    <MenuItem key={option.topic} value={i}>
+                      {option.topic}
                     </MenuItem>
                   ))}
                 </TextField>
@@ -100,9 +93,14 @@ export default ContactFormSection => {
                   onChange={handleChange}
                   variant="outlined"
                   fullWidth
+                  inputRef={commentField}
                 />
               </div>
-              <CustomButton color="primary" className="rpmg-contact-submit">
+              <CustomButton
+                color="primary"
+                className="rpmg-contact-submit"
+                onClick={initiateEmail}
+              >
                 Send
               </CustomButton>
             </form>
@@ -112,3 +110,5 @@ export default ContactFormSection => {
     </Card>
   )
 }
+
+export default ContactFormSection

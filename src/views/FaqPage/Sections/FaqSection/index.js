@@ -36,7 +36,7 @@ const faqs = [
   },
 ]
 
-export default FaqSection => {
+const FaqSection = ({ sectionHeader, faqs }) => {
   const classes = useStyles()
   const cardClasses = useCardStyles()
 
@@ -55,7 +55,7 @@ export default FaqSection => {
 
   return (
     <Card className={classNames(classes.faqSection)}>
-      <CardHeader color="primary">Frequently Asked Questions</CardHeader>
+      <CardHeader color="primary">{sectionHeader}</CardHeader>
       <CardBody
         className={classNames(
           "cardBody",
@@ -96,7 +96,7 @@ export default FaqSection => {
                       })
                     }
                   >
-                    <Typography variant="body1">{faq.answer} </Typography>
+                    <Typography variant="body1">{faq.answer.answer}</Typography>
                   </GridItem>
                 </Collapse>
               </GridContainer>
@@ -107,3 +107,5 @@ export default FaqSection => {
     </Card>
   )
 }
+
+export default FaqSection
