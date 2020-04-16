@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import { Link } from "gatsby"
+import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import classNames from "classnames"
 
@@ -23,6 +22,7 @@ const initiateDownload = path => {
   link.href = "https:" + path
   link.setAttribute("download", true)
   link.target = "_blank"
+  link.rel = "noopener noreferrer"
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
@@ -78,7 +78,7 @@ const ResourcesSection = ({ pageData }) => {
                   onChange={handleSelectChange}
                   helperText="Please select a topic"
                 >
-                  {pageData.downloadableDocuments.map((option, i) => (
+                  {downloadableDocuments.map((option, i) => (
                     <MenuItem key={i} value={option.publicName}>
                       <div
                         style={{ width: "100%" }}
@@ -99,7 +99,7 @@ const ResourcesSection = ({ pageData }) => {
               {sectionHeaderText_resources}
             </Typography>
             <GridContainer direction="column" component="ul">
-              {pageData.resources.map((r, i) => {
+              {resources.map((r, i) => {
                 if (r.phone) {
                   return (
                     <GridContainer key={i} item direction="row" component="li">
@@ -113,6 +113,7 @@ const ResourcesSection = ({ pageData }) => {
                             "Open in phone application and call " + r.phone
                           }
                           target="_blank"
+                          rel="noopener noreferrer"
                         >
                           {r.phone}
                         </a>
@@ -130,6 +131,7 @@ const ResourcesSection = ({ pageData }) => {
                           href={r.url}
                           title={"Navigate to " + r.publicName}
                           target="_blank"
+                          rel="noopener noreferrer"
                         >
                           visit >
                         </a>

@@ -8,7 +8,7 @@ const ServicesPage = ({ location }) => {
     graphql`
       query {
         contentfulWebsiteGlobalVariables {
-          ...SiteVariables
+          ...SiteVariablesFragment
         }
       }
     `

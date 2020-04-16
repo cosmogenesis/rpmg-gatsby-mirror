@@ -1,8 +1,10 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "[iF]ragment" }]*/
+
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {
   ServicesPageFragment,
-  ServiceCollections,
+  ServiceCollectionsFragment,
 } from "src/components/QueryFragments"
 
 import Layout from "src/components/Layout"
@@ -25,7 +27,7 @@ export default function ServicesPage(props) {
       query {
         allContentfulServiceCollectionProgramOrServiceCategory {
           nodes {
-            ...ServiceCollections
+            ...ServiceCollectionsFragment
           }
         }
         contentfulPageServicesListing {

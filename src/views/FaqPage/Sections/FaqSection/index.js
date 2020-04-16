@@ -19,23 +19,6 @@ import cardStyles from "src/assets/jss/material-kit-react/components/cardStyle"
 const useStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-const faqs = [
-  {
-    question: "Does RPMG provide marriage and family counciling?",
-    answer:
-      "Yes, please see our Marriage and Family Counciling services on the services listing page for more information.",
-  },
-  {
-    question: "Does RPMG have a drug management program?",
-    answer:
-      "Yes, please see our Drug Management services on the services listing page for more information.",
-  },
-  {
-    question: "How long has RPMG been in business?",
-    answer: "We have been in business for over 20 years.",
-  },
-]
-
 const FaqSection = ({ sectionHeader, faqs }) => {
   const classes = useStyles()
   const cardClasses = useCardStyles()

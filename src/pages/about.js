@@ -8,7 +8,7 @@ const AboutPage = ({ location }) => {
     graphql`
       query {
         contentfulWebsiteGlobalVariables {
-          ...SiteVariables
+          ...SiteVariablesFragment
         }
       }
     `

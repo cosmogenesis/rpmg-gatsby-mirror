@@ -1,19 +1,10 @@
-import React, { useState } from "react"
-import clsx from "clsx"
-
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
+import React from "react"
 
 import GridContainer from "src/components/Grid/GridContainer"
 import GridItem from "src/components/Grid/GridItem"
 import ServicesList from "src/components/ServicesList"
 
-import {
-  Typography,
-  List,
-  ListItem,
-  ListSubheader,
-  Collapse,
-} from "@material-ui/core"
+import { Typography } from "@material-ui/core"
 
 const ServiceCollection = ({ collection, classes, isList }) => {
   return (

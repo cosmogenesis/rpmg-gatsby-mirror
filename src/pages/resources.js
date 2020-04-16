@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import SiteVariables from "src/components/QueryFragments"
+import SiteVariablesFragment from "src/components/QueryFragments"
 import ResourcesPageView from "../views/ResourcesPage"
 
 const ResourcesPage = ({ location }) => {
@@ -8,7 +8,7 @@ const ResourcesPage = ({ location }) => {
     graphql`
       query {
         contentfulWebsiteGlobalVariables {
-          ...SiteVariables
+          ...SiteVariablesFragment
         }
       }
     `

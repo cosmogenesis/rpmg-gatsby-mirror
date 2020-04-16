@@ -8,7 +8,7 @@ const PrivacyPage = ({ location }) => {
     graphql`
       query {
         contentfulWebsiteGlobalVariables {
-          ...SiteVariables
+          ...SiteVariablesFragment
         }
       }
     `

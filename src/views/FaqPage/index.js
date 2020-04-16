@@ -1,6 +1,8 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "[iF]ragment" }]*/
+
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { FaqContactPage } from "src/components/QueryFragments"
+import { FaqContactPageFragment } from "src/components/QueryFragments"
 
 import { makeStyles } from "@material-ui/core/styles"
 import Layout from "src/components/Layout"
@@ -18,7 +20,7 @@ export default function FaqPage(props) {
     graphql`
       query {
         contentfulPageFaqContactPage {
-          ...FaqContactPage
+          ...FaqContactPageFragment
         }
       }
     `

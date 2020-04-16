@@ -1,9 +1,8 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "[iF]ragment" }]*/
+
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import {
-  AboutPageFragment,
-  FeaturedProfessionals,
-} from "src/components/QueryFragments"
+import { AboutPageFragment } from "src/components/QueryFragments"
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles"

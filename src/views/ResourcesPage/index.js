@@ -1,6 +1,8 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "[iF]ragment" }]*/
+
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { PatientResourcesPage } from "src/components/QueryFragments"
+import { PatientResourcesPageFragment } from "src/components/QueryFragments"
 import { makeStyles } from "@material-ui/core/styles"
 import Layout from "src/components/Layout"
 import GridItem from "src/components/Grid/GridItem.js"
@@ -17,7 +19,7 @@ export default function ResourcesPage(props) {
     graphql`
       query {
         contentfulPagePatientResources {
-          ...PatientResourcesPage
+          ...PatientResourcesPageFragment
         }
       }
     `

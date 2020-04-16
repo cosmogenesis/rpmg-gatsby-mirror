@@ -52,7 +52,7 @@ const Professional = ({ professional, classes, useTeaser }) => {
             </Typography>
           </GridItem>
           <GridItem>
-            <Typography gutterBottom variant="body2">
+            <Typography gutterBottom variant="body1">
               {useTeaser ? professional.bioTeaser : professional.bio.bio}
             </Typography>
           </GridItem>

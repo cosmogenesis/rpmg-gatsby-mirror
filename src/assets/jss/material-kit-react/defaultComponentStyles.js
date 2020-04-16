@@ -17,7 +17,7 @@ const defaultComponentStyles = {
       fontSize: getCalcRem(24),
       fontWeight: "500",
     },
-    "& .MuiTypography-h5": {
+    "& .MuiTypography-h5, ": {
       fontSize: "1.25rem",
       fontWeight: "500",
     },
@@ -34,6 +34,9 @@ const defaultComponentStyles = {
     },
     "& .MuiTypography-body1, & .MuiTypography-body1 p": {
       fontSize: getCalcRem(13),
+      fontWeight: "400",
+      lineHeight: "1.5",
+      letterSpacing: "0.00938em",
       [theme.breakpoints.up("md")]: {
         fontSize: defaultDesktopFontSize,
       },
@@ -41,12 +44,13 @@ const defaultComponentStyles = {
     "& .MuiCollapse-container": {
       width: "100%",
     },
-    "& .rpmg-list-wrapper": {
+    "& .rpmg-list-wrapper, & ul": {
       width: "100%",
       listStyle: "disc",
       paddingLeft: "20px",
       display: "flex",
       flexWrap: "wrap",
+
       "& .MuiListSubheader-root": {
         fontWeight: "500",
         lineHeight: "inherit",
@@ -56,8 +60,9 @@ const defaultComponentStyles = {
         marginBottom: ".25rem",
         width: "100%",
         flex: "none",
-        [theme.breakpoints.down("md")]: {
-          fontSize: defaultMobileFontSize,
+        fontSize: defaultMobileFontSize,
+        [theme.breakpoints.up("md")]: {
+          fontSize: defaultDesktopFontSize,
         },
       },
       "& li": {
@@ -66,8 +71,9 @@ const defaultComponentStyles = {
         fontWeight: "normal",
         flex: "1 0 50%",
         marginBottom: ".25rem",
-        [theme.breakpoints.down("md")]: {
-          fontSize: defaultMobileFontSize,
+        fontSize: defaultMobileFontSize,
+        [theme.breakpoints.up("md")]: {
+          fontSize: defaultDesktopFontSize,
         },
         [theme.breakpoints.down("sm")]: {
           flex: "none",

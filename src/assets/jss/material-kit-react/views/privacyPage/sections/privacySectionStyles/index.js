@@ -1,19 +1,25 @@
 import defaultComponentStyles from "src/assets/jss/material-kit-react/defaultComponentStyles"
 import { getCalcRem } from "src/assets/jss/material-kit-react.js"
-import { Autorenew } from "@material-ui/icons"
 
 const privacySectionStyles = theme => ({
   ...defaultComponentStyles,
   privacyPolicySection: {
-    "& .MuiTypography-body1, & .MuiTypography-body1 p, & .MuiTypography-h5": {
+    "& .MuiTypography-body1, & .MuiTypography-body1 p, & .MuiTypography-h5, & h3": {
       marginBottom: "1rem",
     },
-    "& .rpmg-list-wrapper": {
+    "& h3": {
+      "& .MuiTypography-h5, ": {
+        fontSize: "1.25rem",
+        fontWeight: "500",
+      },
+    },
+    "& .rpmg-list-wrapper, & ul": {
       width: "auto",
+      display: "block",
       "& li": {
         marginLeft: "0",
-        marginBottom: "0",
-        flex: "none",
+        marginBottom: getCalcRem(16),
+        displ: "none",
       },
     },
   },

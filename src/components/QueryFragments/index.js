@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 
-export const siteMetaData = graphql`
-  fragment SiteMetaData on Site {
+export const siteMetaDataFragment = graphql`
+  fragment SiteMetaDataFragment on Site {
     siteMetadata {
       title
       description
@@ -10,8 +10,8 @@ export const siteMetaData = graphql`
   }
 `
 
-export const pageScaffolding = graphql`
-  fragment PageScaffolding on ContentfulScaffoldingPageSeoAndOtherBasics {
+export const pageScaffoldingFragment = graphql`
+  fragment PageScaffoldingFragment on ContentfulScaffoldingPageSeoAndOtherBasics {
     seoDescription
     seoPageTitle
     keywords
@@ -31,8 +31,8 @@ export const pageScaffolding = graphql`
   }
 `
 
-export const featuredServices = graphql`
-  fragment FeaturedServicesCollections on ContentfulFeaturedServiceCollections {
+export const featuredServicesFragment = graphql`
+  fragment FeaturedServicesCollectionsFragment on ContentfulFeaturedServiceCollections {
     serviceCollections {
       description {
         description
@@ -44,8 +44,8 @@ export const featuredServices = graphql`
     }
   }
 `
-export const professional = graphql`
-  fragment Professional on ContentfulProfessional {
+export const professionalFragment = graphql`
+  fragment ProfessionalFragment on ContentfulProfessional {
     bio {
       bio
     }
@@ -65,16 +65,16 @@ export const professional = graphql`
   }
 `
 
-export const featuredProfessionals = graphql`
-  fragment FeaturedProfessionals on ContentfulFeaturedProfessionals {
+export const featuredProfessionalsFragment = graphql`
+  fragment FeaturedProfessionalsFragment on ContentfulFeaturedProfessionals {
     professionals {
-      ...Professional
+      ...ProfessionalFragment
     }
   }
 `
 
-export const siteVariables = graphql`
-  fragment SiteVariables on ContentfulWebsiteGlobalVariables {
+export const siteVariablesFragment = graphql`
+  fragment SiteVariablesFragment on ContentfulWebsiteGlobalVariables {
     buttonText_featuredProfessionals
     buttonText_featuredServices
     headerText_featuredProfessionals
@@ -84,8 +84,8 @@ export const siteVariables = graphql`
   }
 `
 
-export const serviceCollections = graphql`
-  fragment ServiceCollections on ContentfulServiceCollectionProgramOrServiceCategory {
+export const serviceCollectionsFragment = graphql`
+  fragment ServiceCollectionsFragment on ContentfulServiceCollectionProgramOrServiceCategory {
     description {
       description
     }
@@ -101,13 +101,13 @@ export const serviceCollections = graphql`
 export const homePageFragment = graphql`
   fragment HomePageFragment on ContentfulPageHomepage {
     scaffolding {
-      ...PageScaffolding
+      ...PageScaffoldingFragment
     }
     featuredServices {
-      ...FeaturedServicesCollections
+      ...FeaturedServicesCollectionsFragment
     }
     featuredProfessionals {
-      ...FeaturedProfessionals
+      ...FeaturedProfessionalsFragment
     }
   }
 `
@@ -115,11 +115,11 @@ export const homePageFragment = graphql`
 export const servicesPageFragment = graphql`
   fragment ServicesPageFragment on ContentfulPageServicesListing {
     scaffolding {
-      ...PageScaffolding
+      ...PageScaffoldingFragment
     }
     headerText_serviceListing
     featuredProfessionals {
-      ...FeaturedProfessionals
+      ...FeaturedProfessionalsFragment
     }
   }
 `
@@ -127,19 +127,19 @@ export const servicesPageFragment = graphql`
 export const professionalsPageFragment = graphql`
   fragment ProfessionalsPageFragment on ContentfulPageProfessionalsListing {
     scaffolding {
-      ...PageScaffolding
+      ...PageScaffoldingFragment
     }
     professionalsListingHeaderTitle
     featuredServices {
-      ...FeaturedServicesCollections
+      ...FeaturedServicesCollectionsFragment
     }
   }
 `
 
-export const patientResourcesPage = graphql`
-  fragment PatientResourcesPage on ContentfulPagePatientResources {
+export const patientResourcesPageFragment = graphql`
+  fragment PatientResourcesPageFragment on ContentfulPagePatientResources {
     scaffolding {
-      ...PageScaffolding
+      ...PageScaffoldingFragment
     }
     pageHeaderTitle
     sectionHeaderTitle_downloads
@@ -161,14 +161,14 @@ export const patientResourcesPage = graphql`
       url
     }
     featuredServices {
-      ...FeaturedServicesCollections
+      ...FeaturedServicesCollectionsFragment
     }
   }
 `
-export const faqContactPage = graphql`
-  fragment FaqContactPage on ContentfulPageFaqContactPage {
+export const faqContactPageFragment = graphql`
+  fragment FaqContactPageFragment on ContentfulPageFaqContactPage {
     scaffolding {
-      ...PageScaffolding
+      ...PageScaffoldingFragment
     }
     headerText_ContactUsForm
     headerText_faqListing
@@ -188,7 +188,7 @@ export const faqContactPage = graphql`
 export const aboutPageFragment = graphql`
   fragment AboutPageFragment on ContentfulPageAboutUs {
     scaffolding {
-      ...PageScaffolding
+      ...PageScaffoldingFragment
     }
     headerText_aboutUsSection
     subheaderText_aboutUsSubsection
@@ -201,7 +201,48 @@ export const aboutPageFragment = graphql`
       }
     }
     featuredProfessionals {
-      ...FeaturedProfessionals
+      ...FeaturedProfessionalsFragment
+    }
+  }
+`
+
+export const privacyPageFragment = graphql`
+  fragment PrivacyPageFragment on ContentfulPagePrivacyPolicy {
+    scaffolding {
+      ...PageScaffoldingFragment
+    }
+    headerText_privacyPolicySection
+    text_privacyPolicy {
+      childMarkdownRemark {
+        html
+      }
+    }
+  }
+`
+
+export const termsPageFragment = graphql`
+  fragment TermsPageFragment on ContentfulPageTermsConditions {
+    scaffolding {
+      ...PageScaffoldingFragment
+    }
+    headerText_termsConditions
+    text_termsConditions {
+      childMarkdownRemark {
+        html
+      }
+    }
+  }
+`
+export const pageMissingPageFragment = graphql`
+  fragment PageMissingPageFragment on ContentfulPagePageMissing404Page {
+    scaffolding {
+      ...PageScaffoldingFragment
+    }
+    headerText
+    message {
+      childMarkdownRemark {
+        html
+      }
     }
   }
 `
