@@ -11,7 +11,7 @@ import Layout from "src/components/Layout"
 // Sections for this page
 import PageMissingSection from "./Sections/PageMissingSection"
 
-import styles from "src/assets/jss/material-kit-react/views/homePage"
+import styles from "src/assets/jss/material-kit-react/views/PageMissingPage"
 const useStyles = makeStyles(styles)
 
 export default function PageMissingPage(props) {

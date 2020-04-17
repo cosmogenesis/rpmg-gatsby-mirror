@@ -1,29 +1,25 @@
-import React, { useState } from "react"
+import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-
-import clsx from "clsx"
 import classNames from "classnames"
 
-// core components
+// custom components
 import Card from "src/components/Card/Card.js"
 import CardBody from "src/components/Card/CardBody.js"
 import CardHeader from "src/components/Card/CardHeader.js"
 import GridContainer from "src/components/Grid/GridContainer.js"
 
-import { Typography } from "@material-ui/core"
-
-import styles from "src/assets/jss/material-kit-react/views/termsPage/sections/termsSectionStyles"
+import styles from "src/assets/jss/material-kit-react/views/pageMissingPage/sections/pageMissingSectionStyles"
 import cardStyles from "src/assets/jss/material-kit-react/components/cardStyle"
 const useStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-export default TermsSection => {
+const PageMissingSection = ({ headerText, message }) => {
   const classes = useStyles()
   const cardClasses = useCardStyles()
 
   return (
-    <Card className={classNames(classes.termsPolicySection)}>
-      <CardHeader color="primary">Terms & Conditions</CardHeader>
+    <Card className={classNames(classes.pageMissingSection)}>
+      <CardHeader color="primary">{headerText}</CardHeader>
       <CardBody
         className={classNames(
           "cardBody",
@@ -31,11 +27,21 @@ export default TermsSection => {
           cardClasses.cardBody
         )}
       >
-        <GridContainer direction="column" item>
-          <Typography variant="h5">Page Missing</Typography>
-          <Typography variant="body1">The page is missing</Typography>
+        <GridContainer
+          className="rpmg-content-container"
+          direction="column"
+          item
+        >
+          <div
+            className="MuiTypography-body1"
+            dangerouslySetInnerHTML={{
+              __html: message.childMarkdownRemark.html,
+            }}
+          />
         </GridContainer>
       </CardBody>
     </Card>
   )
 }
+
+export default PageMissingSection
