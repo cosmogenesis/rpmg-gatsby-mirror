@@ -52,9 +52,24 @@ const Professional = ({ professional, classes, useTeaser }) => {
             </Typography>
           </GridItem>
           <GridItem>
-            <Typography gutterBottom variant="body1">
-              {useTeaser ? professional.bioTeaser : professional.bio.bio}
-            </Typography>
+            {(() => {
+              if (useTeaser) {
+                return (
+                  <Typography gutterBottom variant="body1">
+                    {professional.bioTeaser}
+                  </Typography>
+                )
+              } else {
+                return (
+                  <div
+                    className="MuiTypography-body1"
+                    dangerouslySetInnerHTML={{
+                      __html: professional.bio.childMarkdownRemark.html,
+                    }}
+                  />
+                )
+              }
+            })()}
           </GridItem>
         </GridContainer>
       </GridContainer>

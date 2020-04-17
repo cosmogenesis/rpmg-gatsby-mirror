@@ -19,9 +19,12 @@ const ServiceCollection = ({ collection, classes, isList }) => {
       </GridItem>
       {!isList && (
         <GridItem className="rpmg-promoted-description">
-          <Typography gutterBottom variant="body1">
-            {collection.description.description}
-          </Typography>
+          <div
+            className="MuiTypography-body1"
+            dangerouslySetInnerHTML={{
+              __html: collection.description.childMarkdownRemark.html,
+            }}
+          />
         </GridItem>
       )}
       <ServicesList services={collection.services} classes={classes} />

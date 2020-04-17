@@ -35,7 +35,9 @@ export const featuredServicesFragment = graphql`
   fragment FeaturedServicesCollectionsFragment on ContentfulFeaturedServiceCollections {
     serviceCollections {
       description {
-        description
+        childMarkdownRemark {
+          html
+        }
       }
       publicName
       services {
@@ -47,7 +49,9 @@ export const featuredServicesFragment = graphql`
 export const professionalFragment = graphql`
   fragment ProfessionalFragment on ContentfulProfessional {
     bio {
-      bio
+      childMarkdownRemark {
+        html
+      }
     }
     bioTeaser
     salutation
@@ -87,12 +91,16 @@ export const siteVariablesFragment = graphql`
 export const serviceCollectionsFragment = graphql`
   fragment ServiceCollectionsFragment on ContentfulServiceCollectionProgramOrServiceCategory {
     description {
-      description
+      childMarkdownRemark {
+        html
+      }
     }
     publicName
     services {
       description {
-        description
+        childMarkdownRemark {
+          html
+        }
       }
       publicName
     }
@@ -175,7 +183,9 @@ export const faqContactPageFragment = graphql`
     faqs {
       question
       answer {
-        answer
+        childMarkdownRemark {
+          html
+        }
       }
     }
     instructions_contactUsForm

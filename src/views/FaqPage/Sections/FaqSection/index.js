@@ -79,7 +79,12 @@ const FaqSection = ({ sectionHeader, faqs }) => {
                       })
                     }
                   >
-                    <Typography variant="body1">{faq.answer.answer}</Typography>
+                    <div
+                      className="MuiTypography-body1"
+                      dangerouslySetInnerHTML={{
+                        __html: faq.answer.childMarkdownRemark.html,
+                      }}
+                    />
                   </GridItem>
                 </Collapse>
               </GridContainer>
