@@ -1,3 +1,5 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "[iF]ragment" }]*/
+
 import React from "react"
 //import PropTypes from "prop-types"
 
@@ -13,7 +15,6 @@ import GridItem from "src/components/Grid/GridItem.js"
 import HeaderLinksRight from "src/components/Header/HeaderLinksRight.js"
 import HeaderLinksLeft from "src/components/Header/HeaderLinksLeft.js"
 import Parallax from "src/components/Parallax/Parallax.js"
-import { siteVariables } from "../QueryFragments"
 
 const getMobileHeroImagePath = scaffolding => {
   /** if mobile image provided use provided image
@@ -32,7 +33,7 @@ export default function Layout({
   pageClasses,
   location,
   scaffolding,
-  SiteVariables,
+  siteVariables,
   ...rest
 }) {
   const mobileHeroImagePage = getMobileHeroImagePath(scaffolding)
@@ -49,7 +50,7 @@ export default function Layout({
           color: "secondaryBgColor",
         }}
         scaffolding={scaffolding}
-        SiteVariables={siteVariables}
+        siteVariables={siteVariables}
         {...rest}
       />
       <Parallax

@@ -1,3 +1,5 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "[iF]ragment" }]*/
+
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import SiteVariablesFragment from "src/components/QueryFragments"

@@ -82,6 +82,7 @@ const ResourcesSection = ({ pageData }) => {
                     <MenuItem key={i} value={option.publicName}>
                       <div
                         style={{ width: "100%" }}
+                        role="button"
                         onClick={() => {
                           initiateDownload(option.file.file.url)
                         }}

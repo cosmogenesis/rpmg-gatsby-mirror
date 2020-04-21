@@ -1,6 +1,8 @@
+/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "[iF]ragment" }]*/
+
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import SiteVariables from "src/components/QueryFragments"
+import SiteVariablesFragment from "src/components/QueryFragments"
 import FaqPageView from "../views/FaqPage"
 
 const FaqPage = ({ location }) => {

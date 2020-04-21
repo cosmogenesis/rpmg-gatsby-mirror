@@ -12,7 +12,6 @@ import GridItem from "src/components/Grid/GridItem.js"
 // Sections for this page
 import PromotedStaffSection from "./Sections/PromotedStaffSection"
 import AboutSection from "./Sections/AboutSection"
-
 import styles from "src/assets/jss/material-kit-react/views/aboutPage"
 const useStyles = makeStyles(styles)
 

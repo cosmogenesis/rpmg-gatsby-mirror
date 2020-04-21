@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "gatsby"
 import { makeStyles } from "@material-ui/core/styles"
 import classNames from "classnames"
@@ -62,6 +62,7 @@ const AboutSection = ({
                 }
                 title="Open address in map application"
                 target="_blank"
+                rel="noopener"
               >
                 <a
                   href={
@@ -70,6 +71,7 @@ const AboutSection = ({
                   }
                   title="Open address in map application"
                   target="_blank"
+                  rel="noopener"
                 >
                   {address}
                 </a>
@@ -80,6 +82,7 @@ const AboutSection = ({
                 href={"tel:" + phone}
                 title={"Open in phone application and call " + phone}
                 target="_blank"
+                rel="noopener"
               >
                 {phone}
               </a>

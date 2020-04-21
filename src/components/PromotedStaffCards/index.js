@@ -36,6 +36,7 @@ export default class PromotedStaffCards extends Component {
     this.carouselSettings = carouselSettings
     this.delay = props.delay ? this.carouselSettings.autoplaySpeed / 2 : 0
     this.featured = props.featured
+    this.slick = null
 
     this.pause = this.pause.bind(this)
     this.play = this.play.bind(this)
@@ -48,10 +49,10 @@ export default class PromotedStaffCards extends Component {
   }
 
   play() {
-    this.slider.slickPlay()
+    if (this.slick) this.slider.slickPlay()
   }
   pause() {
-    this.slider.slickPause()
+    if (this.slick) this.slider.slickPause()
   }
 
   getFullName(bio) {
