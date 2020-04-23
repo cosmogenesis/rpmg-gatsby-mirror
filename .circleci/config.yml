@@ -35,24 +35,24 @@ jobs:
       ~/.aws/credentials and ~/.aws/config
     parameters:
       aws-access-key-id:
-        default: $AWS_ACCESS_KEY
+        default: ${AWS_ACCESS_KEY}
         description: |
           AWS access key id for IAM role. Set this to the name of
           the environment variable you will use to hold this
           value, i.e. AWS_ACCESS_KEY.
         type: env_var_name
       aws-region:
-        default: AWS_REGION
+        default: ${AWS_REGION}
         description: |
           Env var of AWS region to operate in
           (defaults to AWS_DEFAULT_REGION)
         type: env_var_name
       aws-secret-access-key:
-        default: AWS_SECRET_ACCESS_KEY
+        default: ${AWS_SECRET_ACCESS_KEY}
         description: |
           AWS secret key for IAM role. Set this to the name of
           the environment variable you will use to hold this
-          value, i.e. $AWS_SECRET_ACCESS_KEY.
+          value, i.e. AWS_SECRET_ACCESS_KEY.
         type: env_var_name
       configure-default-region:
         default: true
@@ -61,7 +61,7 @@ jobs:
           want to store a default region in ~/.aws/config
         type: boolean
       profile-name:
-        default: AWS_PROFILE_NAME
+        default: ${AWS_PROFILE_NAME}
         description: Profile name to be configured.
         type: string
       skip-install-check:
