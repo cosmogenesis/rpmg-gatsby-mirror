@@ -1,0 +1,71 @@
+defaults: &defaults
+  docker:
+    - image: "circleci/node:latest"
+
+version: 2
+jobs:
+  pre-build:
+    working_directory: ~/rpmgWebsite
+    <<: *defaults
+    steps:
+      - checkout:
+          path: ~/rpmgWebsite/
+      - attach_workspace:
+          at: ~/rpmgWebsite/
+
+      - restore_cache:
+          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
+
+      - run: npm install
+
+      - save_cache:
+          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
+
+      - persist_to_workspace:
+          root: ~/rpmgWebsite
+          paths:
+            - node_modules
+  lint:
+    working_directory: ~/rpmgWebsite
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/rpmgWebsite
+      - run: npm run lint
+
+  gatsby-deploy:
+    working_directory: ~/rpmgWebsite
+    <<: *defaults
+    steps:
+      - checkout:
+          path: ~/rpmgWebsite/
+      - attach_workspace:
+          at: ~/rpmgWebsite
+      - run:
+          command: |
+            sudo apt-get -y -qq install awscli
+            CI=false npm run build:ci
+            aws s3 sync public/ s3://rivpsych  --region us-west-1 --delete
+
+workflows:
+  version: 2
+  front-backend:
+    jobs:
+      - pre-build:
+          filters:
+            branches:
+              only:
+                - master
+      - lint:
+          requires:
+            - pre-build
+      - gatsby-deploy:
+          requires:
+            - lint
+          filters:
+            branches:
+              only:
+                - master

@@ -32,6 +32,7 @@
     "react-slick": "^0.25.2"
   },
   "devDependencies": {
+    "gatsby-cli": "^2.11.15",
     "gatsby-plugin-root-import": "^2.0.5",
     "prettier": "^1.19.1"
   },
@@ -40,6 +41,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "build:ci": "node_modules/.bin/gatsby build",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
