@@ -28,6 +28,8 @@ jobs:
           paths:
             - node_modules
   write-aws-configs:
+    working_directory: ~/rpmgWebsite
+    <<: *defaults
     description: |
       Configure and store AWS credentials in
       ~/.aws/credentials and ~/.aws/config
