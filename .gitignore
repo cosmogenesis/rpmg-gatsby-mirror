@@ -36,6 +36,9 @@ build/Release
 node_modules/
 jspm_packages/
 
+# Allow some modules to be updated 
+package-lock.*
+
 # Typescript v1 declaration files
 typings/
 
