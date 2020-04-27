@@ -25,7 +25,13 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
-    `gatsby-theme-material-ui`,
+    {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        pathToStylesProvider: `src/assets/jss/material-kit-react`,
+      },
+    },
+    /**     `gatsby-theme-material-ui`, */
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
