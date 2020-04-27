@@ -4,7 +4,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {
   ServicesPageFragment,
-  ServiceCollectionsFragment,
+  ServiceCollectionFragment,
 } from "src/components/QueryFragments"
 
 import Layout from "src/components/Layout"
@@ -27,7 +27,7 @@ export default function ServicesPage(props) {
       query {
         allContentfulServiceCollectionProgramOrServiceCategory {
           nodes {
-            ...ServiceCollectionsFragment
+            ...ServiceCollectionFragment
           }
         }
         contentfulPageServicesListing {

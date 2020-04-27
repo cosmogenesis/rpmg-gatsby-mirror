@@ -15,6 +15,20 @@ exports.createSchemaCustomization = ({ actions }) => {
       type ContentfulScaffoldingPageSeoAndOtherBasics implements Node {
         heroImageMobile: ContentfulAsset
       }
+
+      type ContentfulService implements Node {
+        description: contentfulServiceDescriptionTextNode
+      }
+
+      type contentfulServiceDescriptionTextNode implements Node
+      @childOf(types: ["ContentfulService"]) {
+        id: ID!
+      }
+
+      type MarkdownRemark implements Node
+      @childOf(types: ["contentfulServiceDescriptionTextNode"]) {
+        id: ID!
+      }
     `
   createTypes(typeDefs)
 }

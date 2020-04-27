@@ -33,10 +33,14 @@ const resourcesSectionStyles = theme => ({
       },
       "& ul": {
         padding: "0",
+        "& li": {
+          paddingRight: "0 !important",
+          listStyle: "none/",
+          display: "flex",
+          marginBottom: theme.spacing(2),
+        },
       },
-      "& li": {
-        marginBottom: theme.spacing(2),
-      },
+
       "& .rpmg-resource-name": {
         marginRight: "auto",
       },

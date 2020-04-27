@@ -17,7 +17,8 @@ const ServiceCollection = ({ collection, classes, isList }) => {
           {collection.publicName}
         </Typography>
       </GridItem>
-      {!isList && (
+      {
+        /** !isList && ( */
         <GridItem className="rpmg-promoted-description">
           <div
             className="MuiTypography-body1"
@@ -26,7 +27,8 @@ const ServiceCollection = ({ collection, classes, isList }) => {
             }}
           />
         </GridItem>
-      )}
+        /**  ) **/
+      }
       <ServicesList services={collection.services} classes={classes} />
     </GridContainer>
   )

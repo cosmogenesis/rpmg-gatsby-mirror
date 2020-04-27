@@ -12,11 +12,14 @@ import { Typography } from "@material-ui/core"
 const getFullName = professional => {
   let full = professional.salutation + " "
   full += professional.firstName + " "
-  full += professional.lastName + ", "
-  professional.suffix.forEach((s, i) => {
-    full += s
-    full += i < professional.suffix.length - 1 ? " " : ""
-  })
+  full += professional.lastName
+  if (professional.suffix) {
+    full += ", "
+    professional.suffix.forEach((s, i) => {
+      full += s
+      full += i < professional.suffix.length - 1 ? " " : ""
+    })
+  }
   return full
 }
 

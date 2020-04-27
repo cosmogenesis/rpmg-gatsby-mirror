@@ -88,8 +88,8 @@ export const siteVariablesFragment = graphql`
   }
 `
 
-export const serviceCollectionsFragment = graphql`
-  fragment ServiceCollectionsFragment on ContentfulServiceCollectionProgramOrServiceCategory {
+export const serviceCollectionFragment = graphql`
+  fragment ServiceCollectionFragment on ContentfulServiceCollectionProgramOrServiceCategory {
     description {
       childMarkdownRemark {
         html
