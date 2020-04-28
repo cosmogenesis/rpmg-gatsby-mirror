@@ -39,7 +39,7 @@ jobs:
       - run:
           command: |
             sudo apt-get -y -qq install awscli
-            CI=false NODE_PATH="./src" CONTENTFUL_SPACE_ID=gunuupyzm3o4 CONTENTFUL_ACCESS_TOKEN=tgpzuvdGsJJ-s3Xotf5cpGgXd2oAMV074TzNAHzbfRs CONTENTFUL_LOCALE_CODE=en-US npm run build:ci
+            CI=false NODE_PATH=${NODE_PATH} CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID} CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN} CONTENTFUL_LOCALE_CODE=en-US npm run build:ci
             aws s3 sync public/ s3://rivpsych  --region us-west-1 --delete
 
 workflows:
