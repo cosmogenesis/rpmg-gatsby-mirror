@@ -9,11 +9,9 @@ import Card from "src/components/Card/Card.js"
 import CardBody from "src/components/Card/CardBody.js"
 import CardHeader from "src/components/Card/CardHeader.js"
 import CustomButton from "src/components/CustomButtons/Button.js"
-import GridContainer from "src/components/Grid/GridContainer"
-import GridItem from "src/components/Grid/GridItem"
 import Professional from "src/components/Professional"
 
-import { Typography, CardActions } from "@material-ui/core"
+import { CardActions } from "@material-ui/core"
 
 const carouselSettings = {
   dots: false,

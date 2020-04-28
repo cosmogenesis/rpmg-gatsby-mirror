@@ -31,7 +31,7 @@ const ServicesList = ({ services, classes, hideSubheader }) => {
         {services.map((service, i) => {
           if (i < 4) {
             return <ListItem key={i}>{service.publicName}</ListItem>
-          }
+          } else return null
         })}
       </List>
       {services.length > 4 && (
@@ -41,7 +41,7 @@ const ServicesList = ({ services, classes, hideSubheader }) => {
               {services.map((service, i) => {
                 if (i >= 4) {
                   return <ListItem key={i}>{service.publicName}</ListItem>
-                }
+                } else return null
               })}
             </List>
           </Collapse>
