@@ -20,14 +20,34 @@ const useStyles = makeStyles(styles)
 export default function ProfessionalsPage(props) {
   const {
     contentfulPageProfessionalsListing,
-    allContentfulProfessional,
+    lead,
+    doctors,
+    otherProfessionals,
   } = useStaticQuery(
     graphql`
       query {
         contentfulPageProfessionalsListing {
           ...ProfessionalsPageFragment
         }
-        allContentfulProfessional {
+        lead: allContentfulProfessional(
+          filter: { lastName: { eq: "Summerour" } }
+        ) {
+          nodes {
+            ...ProfessionalFragment
+          }
+        }
+        doctors: allContentfulProfessional(
+          filter: { suffix: { in: ["PhD", "DNP"] } }
+          sort: { fields: [lastName], order: ASC }
+        ) {
+          nodes {
+            ...ProfessionalFragment
+          }
+        }
+        otherProfessionals: allContentfulProfessional(
+          filter: { suffix: { nin: ["MD", "PhD", "DNP"] } }
+          sort: { fields: [lastName], order: ASC }
+        ) {
           nodes {
             ...ProfessionalFragment
           }
@@ -43,12 +63,16 @@ export default function ProfessionalsPage(props) {
   } = contentfulPageProfessionalsListing
 
   const pageClasses = useStyles()
+
+  let allProfessionals = lead.nodes.concat(doctors.nodes)
+  allProfessionals = allProfessionals.concat(otherProfessionals.nodes)
+
   return (
     <Layout pageClasses={pageClasses} scaffolding={scaffolding} {...props}>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
         <ProfessionalsListSection
           headerText={professionalsListingHeaderTitle}
-          professionals={allContentfulProfessional.nodes}
+          professionals={allProfessionals}
         />
       </GridItem>
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>

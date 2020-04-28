@@ -20,6 +20,12 @@ const professionalStyles = {
       "& .MuiGrid-item": {
         width: "100%",
       },
+      "& .rpmg-learn-more-wrapper": {
+        marginLeft: "0",
+        "& .MuiGrid-item": {
+          width: "auto",
+        },
+      },
     },
     "&.in-list": {
       padding: "1rem 2rem",

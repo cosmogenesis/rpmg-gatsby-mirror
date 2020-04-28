@@ -92,47 +92,47 @@ const defaultComponentStyles = {
         },
       },
     },
-  },
-  learnMoreLinkWrap: {
-    marginLeft: "15px",
-    width: "100%",
-    "& button": {
-      background: "transparent",
-      border: "0",
-      fontSize: defaultMobileFontSize,
-      padding: "0",
-      color: primaryTextColor,
-    },
-    "& .linkText": {
-      width: "2.5rem",
-    },
-  },
-  expand: {
-    "& .expandedText": {
-      display: "none",
-    },
-    "& .linkText": {
-      lineHeight: "26px",
-    },
-    "& svg": {
-      transform: "rotate(0deg)",
-      transition: theme.transitions.create("transform", {
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-  },
-  expandOpen: {
-    "& .collapsedText": {
-      display: "none",
-    },
-    "& .expandedText": {
-      display: "inline",
-    },
-    "& .linkText": {
-      lineHeight: "22px",
-    },
-    "& svg": {
-      transform: "rotate(180deg)",
+    "& .rpmg-learn-more-wrapper": {
+      marginLeft: "15px",
+      width: "100%",
+      "& button": {
+        background: "transparent",
+        border: "0",
+        fontSize: defaultMobileFontSize,
+        padding: "0",
+        color: primaryTextColor,
+      },
+      "& .linkText": {
+        width: "2.5rem",
+      },
+      "& .expandClose": {
+        "& .expandedText": {
+          display: "none",
+        },
+        "& .linkText": {
+          lineHeight: "26px",
+        },
+        "& svg": {
+          transform: "rotate(0deg)",
+          transition: theme.transitions.create("transform", {
+            duration: theme.transitions.duration.shortest,
+          }),
+        },
+      },
+      "& .expandOpen": {
+        "& .collapsedText": {
+          display: "none",
+        },
+        "& .expandedText": {
+          display: "inline",
+        },
+        "& .linkText": {
+          lineHeight: "22px",
+        },
+        "& svg": {
+          transform: "rotate(180deg)",
+        },
+      },
     },
   },
 }

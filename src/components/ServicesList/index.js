@@ -45,11 +45,9 @@ const ServicesList = ({ services, classes, hideSubheader }) => {
               })}
             </List>
           </Collapse>
-          <GridItem className={classes.learnMoreLinkWrap}>
+          <GridItem className="rpmg-learn-more-wrapper">
             <button
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: servicesExpanded,
-              })}
+              className={servicesExpanded ? "expandOpen" : "expandClose"}
               onClick={handleExpandClick}
               aria-expanded={servicesExpanded}
               aria-label="More"

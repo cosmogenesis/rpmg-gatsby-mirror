@@ -1,4 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
+import clsx from "clsx"
+
 // nodejs library that concatenates classes
 import classNames from "classnames"
 
@@ -7,11 +9,12 @@ import GridContainer from "src/components/Grid/GridContainer"
 import GridItem from "src/components/Grid/GridItem"
 import ServicesList from "src/components/ServicesList"
 
-import { Typography } from "@material-ui/core"
+import { Collapse, Typography } from "@material-ui/core"
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
 
 const getFullName = professional => {
-  let full = professional.salutation + " "
-  full += professional.firstName + " "
+  //let full = professional.salutation + " " hide per Joni via email
+  let full = professional.firstName + " "
   full += professional.lastName
   if (professional.suffix) {
     full += ", "
@@ -28,6 +31,11 @@ const getHeadshotPath = professional => {
 }
 
 const Professional = ({ professional, classes, useTeaser }) => {
+  const [bioExpanded, setExpandedState] = useState(false)
+
+  const handleExpandClick = index => {
+    setExpandedState(!bioExpanded)
+  }
   const headshotPath = getHeadshotPath(professional)
   const fullName = getFullName(professional)
   const rowClassNames = {
@@ -55,24 +63,35 @@ const Professional = ({ professional, classes, useTeaser }) => {
             </Typography>
           </GridItem>
           <GridItem>
-            {(() => {
-              if (useTeaser) {
-                return (
-                  <Typography gutterBottom variant="body1">
-                    {professional.bioTeaser}
-                  </Typography>
-                )
-              } else {
-                return (
-                  <div
-                    className="MuiTypography-body1"
-                    dangerouslySetInnerHTML={{
-                      __html: professional.bio.childMarkdownRemark.html,
-                    }}
-                  />
-                )
-              }
-            })()}
+            <Collapse in={!bioExpanded} timeout="auto" unmountOnExit>
+              <Typography gutterBottom variant="body1">
+                {professional.bioTeaser}
+              </Typography>
+            </Collapse>
+          </GridItem>
+          <Collapse in={bioExpanded} timeout="auto" unmountOnExit>
+            <div
+              className="MuiTypography-body1"
+              dangerouslySetInnerHTML={{
+                __html: professional.bio.childMarkdownRemark.html,
+              }}
+            />
+          </Collapse>
+          <GridItem className="rpmg-learn-more-wrapper">
+            <button
+              className={bioExpanded ? "expandOpen" : "expandClose"}
+              onClick={handleExpandClick}
+              aria-expanded={bioExpanded}
+              aria-label="More"
+            >
+              <GridContainer>
+                <GridItem className="linkText collapsedText">More</GridItem>
+                <GridItem className="linkText expandedText">Less</GridItem>
+                <GridItem>
+                  <ArrowDropDownIcon />
+                </GridItem>
+              </GridContainer>
+            </button>
           </GridItem>
         </GridContainer>
       </GridContainer>
