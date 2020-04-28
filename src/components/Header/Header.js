@@ -17,7 +17,7 @@ import Drawer from "@material-ui/core/Drawer"
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu"
 // core components
-import SEO from "src/components/Seo"
+import SEO from "src/components/SEO"
 import styles from "src/assets/jss/material-kit-react/components/headerStyle.js"
 import { secondaryBgColor } from "src/assets/jss/material-kit-react"
 
