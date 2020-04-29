@@ -74,8 +74,6 @@ export default function Header(props) {
     [classes.fixed]: fixed,
   })
 
-  console.log(siteVariables)
-
   const brandComponent = (
     <IconButton className="rpmg-logo-wrapper">
       <Hidden only={["xs"]}>

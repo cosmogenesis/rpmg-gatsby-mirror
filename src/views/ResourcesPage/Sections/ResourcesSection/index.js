@@ -123,7 +123,7 @@ const ResourcesSection = ({ pageData }) => {
                   )
                 } else {
                   return (
-                    <GridContainer item direction="row" component="li">
+                    <GridContainer key={i} item direction="row" component="li">
                       <GridItem className="rpmg-resource-name">
                         {r.publicName}
                       </GridItem>

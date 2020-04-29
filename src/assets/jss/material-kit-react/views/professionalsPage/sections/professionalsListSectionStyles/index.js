@@ -1,4 +1,3 @@
-import { rowBgColor } from "src/assets/jss/material-kit-react.js"
 import defaultComponentStyles from "src/assets/jss/material-kit-react/defaultComponentStyles"
 import professionalStyles from "src/assets/jss/material-kit-react/components/professionalStyles"
 

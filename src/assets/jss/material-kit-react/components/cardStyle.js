@@ -1,6 +1,4 @@
 import {
-  primaryBgColor,
-  secondaryBgColor,
   tertiaryBgColor,
   primaryTextColor,
   secondaryTextColor,
@@ -26,8 +24,6 @@ const cardStyle = theme => ({
     flexDirection: "column",
     minWidth: "0",
     wordWrap: "break-word",
-    fontSize: defaultDesktopFontSize,
-
     transition: "all 300ms linear",
     fontSize: defaultMobileFontSize,
     [theme.breakpoints.up("md")]: {

@@ -5,7 +5,7 @@ import {
   secondaryColorRGB,
   secondaryBoxShadow,
   getCalcRem,
-  defaultMobileFontSize,
+  //  defaultMobileFontSize,
   defaultDesktopFontSize,
 } from "src/assets/jss/material-kit-react.js"
 
