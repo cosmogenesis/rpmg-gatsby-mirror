@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import clsx from "clsx"
 
 // nodejs library that concatenates classes
 import classNames from "classnames"
@@ -30,7 +29,7 @@ const getHeadshotPath = professional => {
   return professional.headshot ? professional.headshot.file.url : false
 }
 
-const Professional = ({ professional, classes, useTeaser }) => {
+const Professional = ({ professional, classes, parentElementName, isList }) => {
   const [bioExpanded, setExpandedState] = useState(false)
 
   const handleExpandClick = index => {
@@ -38,10 +37,11 @@ const Professional = ({ professional, classes, useTeaser }) => {
   }
   const headshotPath = getHeadshotPath(professional)
   const fullName = getFullName(professional)
+
   const rowClassNames = {
     [classes.rpmgProfessional]: true,
     "with-photo": headshotPath,
-    "in-list": !useTeaser,
+    "in-list": isList,
   }
 
   return (
@@ -83,6 +83,10 @@ const Professional = ({ professional, classes, useTeaser }) => {
               onClick={handleExpandClick}
               aria-expanded={bioExpanded}
               aria-label="More"
+              title={"Toggle full Bio for " + fullName}
+              data-analytics-label={
+                "Toggle full Bio for " + fullName + " on " + parentElementName
+              }
             >
               <GridContainer>
                 <GridItem className="linkText collapsedText">More</GridItem>
@@ -95,7 +99,11 @@ const Professional = ({ professional, classes, useTeaser }) => {
           </GridItem>
         </GridContainer>
       </GridContainer>
-      <ServicesList services={professional.services} classes={classes} />
+      <ServicesList
+        services={professional.services}
+        classes={classes}
+        parentElementName={fullName}
+      />
     </GridContainer>
   )
 }

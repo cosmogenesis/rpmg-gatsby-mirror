@@ -8,7 +8,12 @@ import GridItem from "src/components/Grid/GridItem"
 
 import { List, ListItem, ListSubheader, Collapse } from "@material-ui/core"
 
-const ServicesList = ({ services, classes, hideSubheader }) => {
+const ServicesList = ({
+  services,
+  classes,
+  hideSubheader,
+  parentElementName,
+}) => {
   const [servicesExpanded, setExpandedState] = useState(false)
 
   const handleExpandClick = index => {
@@ -51,6 +56,11 @@ const ServicesList = ({ services, classes, hideSubheader }) => {
               onClick={handleExpandClick}
               aria-expanded={servicesExpanded}
               aria-label="More"
+              title="Click to see more services"
+              data-analytics-label={
+                "Promoted Services Component See More Services on " +
+                parentElementName
+              }
             >
               <GridContainer>
                 <GridItem className="linkText collapsedText">More</GridItem>

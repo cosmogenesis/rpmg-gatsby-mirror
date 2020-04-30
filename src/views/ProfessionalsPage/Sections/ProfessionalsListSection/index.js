@@ -35,7 +35,8 @@ const ProfessionalsListSection = ({ professionals, headerText }) => {
                 key={i}
                 professional={professional}
                 classes={classes}
-                useTeaser={false}
+                parentElementName={headerText}
+                isList={true}
               />
             )
           })}

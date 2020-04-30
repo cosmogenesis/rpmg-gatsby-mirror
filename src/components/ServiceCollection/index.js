@@ -29,7 +29,11 @@ const ServiceCollection = ({ collection, classes, isList }) => {
         </GridItem>
         /**  ) **/
       }
-      <ServicesList services={collection.services} classes={classes} />
+      <ServicesList
+        services={collection.services}
+        classes={classes}
+        parentElementName={collection.publicName}
+      />
     </GridContainer>
   )
 }

@@ -27,6 +27,7 @@ export default function Footer(props) {
       top: 0,
       behavior: "smooth",
     })
+    return true
   }
 
   return (
@@ -35,12 +36,22 @@ export default function Footer(props) {
         <div className={classes.left}>
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
-              <a href="/terms" className={classes.block} title="Terms">
+              <a
+                href="/terms"
+                className={classes.block}
+                title="Navigate to Terms page"
+                data-analytics-label="Footer Terms Link"
+              >
                 Terms
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a href="/privacy" className={classes.block} title="Privacy">
+              <a
+                href="/privacy"
+                className={classes.block}
+                title="Navigate to Privacy page"
+                data-analytics-label="Footer Privacy Link"
+              >
                 Privacy
               </a>
             </ListItem>
@@ -49,11 +60,14 @@ export default function Footer(props) {
         <Button
           color="primary"
           justIcon
-          className={classes.topLink}
-          title="Back to Top"
+          className="rpmg-backtotop-button"
+          title="Click to scroll back to top of page"
           onClick={scrollToTop}
         >
-          <ArrowUpwardIcon alt="Back to Top" />
+          <ArrowUpwardIcon
+            alt="Click to scroll back to top of page"
+            data-analytics-label="Footer back to top button"
+          />
         </Button>
         <div className={classNames(classes.right, classes.copy)}>
           &copy; {1900 + new Date().getYear()} RPMG

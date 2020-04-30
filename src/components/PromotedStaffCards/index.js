@@ -87,7 +87,8 @@ export default class PromotedStaffCards extends Component {
                 <Professional
                   professional={professional}
                   classes={this.classes}
-                  useTeaser={true}
+                  parentElementName={this.props.headerText}
+                  isList={false}
                 />
 
                 <CardActions className={this.cardClasses.buttonWrap}>

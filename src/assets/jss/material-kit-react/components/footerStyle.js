@@ -49,6 +49,11 @@ const footerStyle = theme => ({
       textDecoration: "underline",
       backgroundColor: "transparent",
     },
+    "& .rpmg-backtotop-button": {
+      padding: "15px 0",
+      margin: ".5rem 0 0",
+      float: "right!important",
+    },
   },
 
   footerWhiteFont: {
@@ -73,7 +78,7 @@ const footerStyle = theme => ({
     position: "relative",
     top: "3px",
   },
-  topLink: {
+  "& .rpmg-backtotop-button": {
     padding: "15px 0",
     margin: ".5rem 0 0",
     float: "right!important",
