@@ -62,6 +62,7 @@ export default function Footer(props) {
           justIcon
           className="rpmg-backtotop-button"
           title="Click to scroll back to top of page"
+          data-analytics-label="Footer back to top button"
           onClick={scrollToTop}
         >
           <ArrowUpwardIcon

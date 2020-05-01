@@ -41,9 +41,11 @@ const AboutSection = ({
       >
         <GridContainer direction="column">
           <GridItem className="rpmg-about-description">
-            <Typography variant="h4" gutterBottom>
-              {subheaderText_aboutUsSubsection}
-            </Typography>
+            {headerText_aboutUsSection !== subheaderText_aboutUsSubsection && (
+              <Typography variant="h4" gutterBottom>
+                {subheaderText_aboutUsSubsection}
+              </Typography>
+            )}
             <div
               className="MuiTypography-body1"
               dangerouslySetInnerHTML={{
@@ -51,6 +53,7 @@ const AboutSection = ({
               }}
             />
           </GridItem>
+
           <GridItem className="rpmg-about-contact">
             <Typography variant="h4" gutterBottom>
               {subheaderTitle_contactLinks}
