@@ -17,7 +17,8 @@ export default function HeaderLinks(props) {
           href="/services"
           color="transparent"
           className={classes.navLink}
-          title="Go to Services listing page"
+          title="Navigate to: Services listing page"
+          data-analytics-label="Site header Services link"
         >
           Services
         </Button>
@@ -25,7 +26,8 @@ export default function HeaderLinks(props) {
       <ListItem className={classes.listItem}>
         <Button
           href="/staff"
-          title="Go to Staff listing page"
+          title="Navigate to: Staff listing page"
+          data-analytics-label="Site header Staff link"
           color="transparent"
           className={classes.navLink}
         >

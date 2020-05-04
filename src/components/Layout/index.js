@@ -30,6 +30,7 @@ const getMobileHeroImagePath = scaffolding => {
 }
 
 export default function Layout({
+  pageNameClass = false,
   pageClasses,
   location,
   scaffolding,
@@ -39,7 +40,7 @@ export default function Layout({
   const mobileHeroImagePage = getMobileHeroImagePath(scaffolding)
 
   return (
-    <div className={pageClasses.body}>
+    <div className={classNames(pageClasses.body, pageNameClass)}>
       <Header
         rightLinks={<HeaderLinksRight location={location} />}
         leftLinks={<HeaderLinksLeft location={location} />}

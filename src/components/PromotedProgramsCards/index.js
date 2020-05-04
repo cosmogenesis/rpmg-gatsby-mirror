@@ -88,7 +88,7 @@ export default class PromotedProgramsCards extends Component {
                   <Link
                     to="/services/"
                     title={"Navigate to: " + this.props.actionButtonText}
-                    data-analytics-label="Promoted Services Component See All Button"
+                    data-analytics-label="Featured Services and Programs Component See All Button"
                   >
                     <CustomButton
                       color="primary"

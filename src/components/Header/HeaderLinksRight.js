@@ -18,7 +18,12 @@ export default function HeaderLinksRight(props) {
   return (
     <List className={classes.rightNavList}>
       <MenuItem disableGutters selected={location.pathname === "/"}>
-        <Button href="/" color="transparent" title="Go to Home page">
+        <Button
+          href="/"
+          color="transparent"
+          title="Navigate to: Home page"
+          data-analytics-label="Main menu Home link"
+        >
           Home
         </Button>
       </MenuItem>
@@ -26,18 +31,29 @@ export default function HeaderLinksRight(props) {
         <Button
           href="/resources"
           color="transparent"
-          title="Go to Patient Resources page"
+          title="Navigate to: Patient Resources page"
+          data-analytics-label="Main menu Resources link"
         >
           Patient Resources
         </Button>
       </MenuItem>
       <MenuItem disableGutters selected={location.pathname.match("/faq")}>
-        <Button href="/faq" color="transparent" title="Go to FAQ page">
+        <Button
+          href="/faq"
+          color="transparent"
+          title="Navigate to: FAQ page"
+          data-analytics-label="Main menu FAQ link"
+        >
           FAQ
         </Button>
       </MenuItem>
       <MenuItem disableGutters selected={location.pathname.match("/about")}>
-        <Button href="/about" color="transparent" title="Go to About Us page">
+        <Button
+          href="/about"
+          color="transparent"
+          title="Navigate to: About Us page"
+          data-analytics-label="Main menu About Us link"
+        >
           About Us
         </Button>
       </MenuItem>

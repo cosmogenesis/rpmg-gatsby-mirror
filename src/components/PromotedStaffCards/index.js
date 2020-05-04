@@ -92,7 +92,11 @@ export default class PromotedStaffCards extends Component {
                 />
 
                 <CardActions className={this.cardClasses.buttonWrap}>
-                  <Link to="/staff/">
+                  <Link
+                    to="/staff/"
+                    title={"Navigate to: " + this.props.actionButtonText}
+                    data-analytics-label="Featured Professionals Component See All Button"
+                  >
                     <CustomButton
                       color="primary"
                       className={this.cardClasses.button}
