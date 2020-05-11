@@ -43,6 +43,10 @@ const ContactFormSection = ({ sectionHeader, topics, instructions }) => {
       "?subject=" + encodeURI("Question regarding: " + topics[topic].topic)
     path += "&body=" + encodeURI(commentField.current.value)
     link.href = path
+    link.setAttribute(
+      "data-analytics-label",
+      "Contact Form Message Regarding: " + topics[topic].topic
+    )
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
