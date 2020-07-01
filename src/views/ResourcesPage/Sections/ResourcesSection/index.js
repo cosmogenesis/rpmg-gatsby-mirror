@@ -48,7 +48,7 @@ const ResourcesSection = ({ pageData }) => {
     resources,
   } = pageData
 
-  console.log(resources)
+  console.log(downloadableDocuments)
   return (
     <Card className={classes.resourcesSection}>
       <CardHeader color="primary">{pageHeaderTitle}</CardHeader>
@@ -60,46 +60,54 @@ const ResourcesSection = ({ pageData }) => {
         )}
       >
         <GridContainer direction="column">
-          <GridItem>
-            <Typography variant="h4" gutterBottom>
-              {sectionHeaderTitle_downloads}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              {instructions.instructions}
-            </Typography>
-          </GridItem>
-          <GridItem>
-            <form className="rpmg-download-form" noValidate autoComplete="off">
-              <div className="rpmg-field-set">
-                <TextField
-                  id="rpmg-select-form"
-                  fullWidth
-                  select
-                  label="Select Form"
-                  value={curForm}
-                  onChange={handleSelectChange}
-                  helperText="Please select a topic"
+          {downloadableDocuments && downloadableDocuments.length > 0 && (
+            <>
+              <GridItem>
+                <Typography variant="h4" gutterBottom>
+                  {sectionHeaderTitle_downloads}
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {instructions.instructions}
+                </Typography>
+              </GridItem>
+              <GridItem>
+                <form
+                  className="rpmg-download-form"
+                  noValidate
+                  autoComplete="off"
                 >
-                  {downloadableDocuments.map((option, i) => (
-                    <MenuItem key={i} value={option.publicName}>
-                      <div
-                        style={{ width: "100%" }}
-                        role="button"
-                        onClick={() => {
-                          initiateDownload(
-                            option.file.file.url,
-                            option.publicName
-                          )
-                        }}
-                      >
-                        {option.publicName}
-                      </div>
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </div>
-            </form>
-          </GridItem>
+                  <div className="rpmg-field-set">
+                    <TextField
+                      id="rpmg-select-form"
+                      fullWidth
+                      select
+                      label="Select Form"
+                      value={curForm}
+                      onChange={handleSelectChange}
+                      helperText="Please select a topic"
+                    >
+                      {downloadableDocuments.map((option, i) => (
+                        <MenuItem key={i} value={option.publicName}>
+                          <div
+                            style={{ width: "100%" }}
+                            role="button"
+                            onClick={() => {
+                              initiateDownload(
+                                option.file.file.url,
+                                option.publicName
+                              )
+                            }}
+                          >
+                            {option.publicName}
+                          </div>
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </div>
+                </form>
+              </GridItem>
+            </>
+          )}
           <GridItem className="rpmg-resource-listing">
             <Typography variant="h4" gutterBottom>
               {sectionHeaderText_resources}

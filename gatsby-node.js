@@ -16,6 +16,11 @@ exports.createSchemaCustomization = ({ actions }) => {
         heroImageMobile: ContentfulAsset
       }
 
+      type ContentfulPagePatientResources implements Node {
+        downloadableDocuments: [ContentfulDownloadableDocument]
+      }
+
+
       type ContentfulService implements Node {
         description: contentfulServiceDescriptionTextNode
       }
