@@ -48,6 +48,7 @@ const ResourcesSection = ({ pageData }) => {
     resources,
   } = pageData
 
+  console.log(resources)
   return (
     <Card className={classes.resourcesSection}>
       <CardHeader color="primary">{pageHeaderTitle}</CardHeader>

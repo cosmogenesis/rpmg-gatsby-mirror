@@ -34,23 +34,21 @@ export default class PromotedStaffCards extends Component {
     this.carouselSettings = carouselSettings
     this.delay = props.delay ? this.carouselSettings.autoplaySpeed / 2 : 0
     this.featured = props.featured
-    this.slick = null
+    this.slider = null
 
     this.pause = this.pause.bind(this)
     this.play = this.play.bind(this)
   }
   componentDidMount() {
-    if (this.delay !== false) {
-      this.pause()
-      setTimeout(this.play, this.delay)
-    }
+    this.pause()
+    setTimeout(this.play, this.delay)
   }
 
   play() {
-    if (this.slick) this.slider.slickPlay()
+    if (this.slider) this.slider.slickPlay()
   }
   pause() {
-    if (this.slick) this.slider.slickPause()
+    if (this.slider) this.slider.slickPause()
   }
 
   getFullName(bio) {
