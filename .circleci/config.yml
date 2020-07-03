@@ -4,53 +4,57 @@ defaults: &defaults
 
 version: 2.1
 jobs:
-  build:
+  pre-build:
+    working_directory: ~/rpmgWebsite
+    <<: *defaults
     steps:
-      pre-build:
-        working_directory: ~/rpmgWebsite
-        <<: *defaults
-        steps:
-          - checkout:
-              path: ~/rpmgWebsite/
-          - attach_workspace:
-              at: ~/rpmgWebsite/
+      - checkout:
+          path: ~/rpmgWebsite/
+      - attach_workspace:
+          at: ~/rpmgWebsite/
 
-          - restore_cache:
-              key: node-v2-{{ checksum "package.json" }}-{{ arch }}
+      - restore_cache:
+          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
 
-          - run: npm install
+      - run: npm install
 
-          - save_cache:
-              key: node-v2-{{ checksum "package.json" }}-{{ arch }}
-              paths:
-                - node_modules
+      - save_cache:
+          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
 
-          - persist_to_workspace:
-              root: ~/rpmgWebsite
-              paths:
-                - node_modules
-      gatsby-deploy:
-        requires:
-          - pre-build
-        working_directory: ~/rpmgWebsite
-        <<: *defaults
-        steps:
-          - checkout:
-              path: ~/rpmgWebsite/
-          - attach_workspace:
-              at: ~/rpmgWebsite
-          - run:
-              command: |
-                sudo apt-get -y -qq install awscli
-                CI=false NODE_PATH=${NODE_PATH} CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID} CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN} CONTENTFUL_LOCALE_CODE=en-US SITE_URL=${SITE_URL} npm run build:ci
-                aws s3 sync public/ s3://rivpsych  --region us-west-1 --delete
-                aws configure set preview.cloudfront true
-                aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_ID} --paths "/*"
+      - persist_to_workspace:
+          root: ~/rpmgWebsite
+          paths:
+            - node_modules
+
+  build:
+    working_directory: ~/rpmgWebsite
+    <<: *defaults
+    steps:
+      - checkout:
+          path: ~/rpmgWebsite/
+      - attach_workspace:
+          at: ~/rpmgWebsite
+      - run:
+          command: |
+            sudo apt-get -y -qq install awscli
+            CI=false NODE_PATH=${NODE_PATH} CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID} CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN} CONTENTFUL_LOCALE_CODE=en-US SITE_URL=${SITE_URL} npm run build:ci
+            aws s3 sync public/ s3://rivpsych  --region us-west-1 --delete
+            aws configure set preview.cloudfront true
+            aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_ID} --paths "/*"
 workflows:
   version: 2.1
-  fullbuild:
+  front-backend:
     jobs:
+      - pre-build:
+          filters:
+            branches:
+              only:
+                - master
       - build:
+          requires:
+            - pre-build
           filters:
             branches:
               only:
