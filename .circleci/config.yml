@@ -47,16 +47,16 @@ workflows:
   version: 2.1
   fullbuild:
     jobs:
-      build:
-        - pre-build:
-            filters:
-              branches:
-                only:
-                  - master
-        - gatsby-deploy:
-            requires:
-              - pre-build
-            filters:
-              branches:
-                only:
-                  - master
+      - build:
+          - pre-build:
+              filters:
+                branches:
+                  only:
+                    - master
+          - gatsby-deploy:
+              requires:
+                - pre-build
+              filters:
+                branches:
+                  only:
+                    - master
