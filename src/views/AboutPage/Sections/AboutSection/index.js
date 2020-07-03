@@ -27,7 +27,6 @@ const AboutSection = ({
 }) => {
   const classes = useStyles()
   const cardClasses = useCardStyles()
-  console.log(text_aboutUs)
 
   return (
     <Card className={classNames(classes.aboutSection)}>

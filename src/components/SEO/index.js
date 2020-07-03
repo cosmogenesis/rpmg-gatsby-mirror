@@ -24,8 +24,6 @@ function SEO({ description, lang, meta, scaffolding, siteVariables }) {
 
   const metaDescription = seoDescription || description
 
-  console.log(description)
-
   return (
     <Helmet
       keywords={keywords}
