@@ -10,9 +10,11 @@ jobs:
     steps:
       - checkout:
           path: ~/rpmgWebsite/
+
       - attach_workspace:
           at: ~/rpmgWebsite
-                - restore_cache:
+
+      - restore_cache:
           key: node-v2-{{ checksum "package.json" }}-{{ arch }}
 
       - run: npm install
@@ -26,6 +28,7 @@ jobs:
           root: ~/rpmgWebsite
           paths:
             - node_modules
+
       - run:
           command: |
             sudo apt-get -y -qq install awscli
