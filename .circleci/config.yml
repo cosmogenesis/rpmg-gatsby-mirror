@@ -4,16 +4,15 @@ defaults: &defaults
 
 version: 2.1
 jobs:
-  pre-build:
+  build:
     working_directory: ~/rpmgWebsite
     <<: *defaults
     steps:
       - checkout:
           path: ~/rpmgWebsite/
       - attach_workspace:
-          at: ~/rpmgWebsite/
-
-      - restore_cache:
+          at: ~/rpmgWebsite
+                - restore_cache:
           key: node-v2-{{ checksum "package.json" }}-{{ arch }}
 
       - run: npm install
@@ -27,15 +26,6 @@ jobs:
           root: ~/rpmgWebsite
           paths:
             - node_modules
-
-  build:
-    working_directory: ~/rpmgWebsite
-    <<: *defaults
-    steps:
-      - checkout:
-          path: ~/rpmgWebsite/
-      - attach_workspace:
-          at: ~/rpmgWebsite
       - run:
           command: |
             sudo apt-get -y -qq install awscli
@@ -47,14 +37,7 @@ workflows:
   version: 2.1
   front-backend:
     jobs:
-      - pre-build:
-          filters:
-            branches:
-              only:
-                - master
       - build:
-          requires:
-            - pre-build
           filters:
             branches:
               only:
