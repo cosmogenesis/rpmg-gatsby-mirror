@@ -45,17 +45,18 @@ jobs:
             aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_ID} --paths "/*"
 workflows:
   version: 2.1
-  build:
+  fullbuild:
     jobs:
-      - pre-build:
-          filters:
-            branches:
-              only:
-                - master
-      - gatsby-deploy:
-          requires:
-            - pre-build
-          filters:
-            branches:
-              only:
-                - master
+      build:
+        - pre-build:
+            filters:
+              branches:
+                only:
+                  - master
+        - gatsby-deploy:
+            requires:
+              - pre-build
+            filters:
+              branches:
+                only:
+                  - master
