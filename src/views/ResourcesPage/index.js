@@ -33,7 +33,12 @@ export default function ResourcesPage(props) {
 
   const pageClasses = useStyles()
   return (
-    <Layout pageClasses={pageClasses} scaffolding={scaffolding} {...props}>
+    <Layout
+      pageNameClass="rpmg-resources-page"
+      pageClasses={pageClasses}
+      scaffolding={scaffolding}
+      {...props}
+    >
       <GridItem xs={12} sm={6} md={6} className={pageClasses.grid}>
         <ResourcesSection pageData={rest} />
       </GridItem>

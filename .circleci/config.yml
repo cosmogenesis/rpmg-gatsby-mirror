@@ -39,7 +39,7 @@ jobs:
       - run:
           command: |
             sudo apt-get -y -qq install awscli
-            CI=false NODE_PATH=${NODE_PATH} CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID} CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN} CONTENTFUL_LOCALE_CODE=en-US npm run build:ci
+            CI=false NODE_PATH=${NODE_PATH} CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID} CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN} CONTENTFUL_LOCALE_CODE=en-US SITE_URL={SITE_URL} npm run build:ci
             aws s3 sync public/ s3://rivpsych  --region us-west-1 --delete
             aws configure set preview.cloudfront true
             aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_ID} --paths "/*"
@@ -47,3 +47,15 @@ workflows:
   version: 2.1
   front-backend:
     jobs:
+      - pre-build:
+          filters:
+            branches:
+              only:
+                - master
+      - gatsby-deploy:
+          requires:
+            - pre-build
+          filters:
+            branches:
+              only:
+                - master

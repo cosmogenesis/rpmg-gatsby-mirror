@@ -36,6 +36,7 @@ export default class PromotedProgramsCards extends Component {
     this.carouselSettings = carouselSettings
     this.delay = props.delay ? this.carouselSettings.autoplaySpeed / 2 : 0
     this.featured = props.featured
+    this.slider = null
 
     this.pause = this.pause.bind(this)
 
@@ -45,17 +46,15 @@ export default class PromotedProgramsCards extends Component {
     }
   }
   componentDidMount() {
-    if (this.delay !== false) {
-      this.pause()
-      setTimeout(this.play, this.delay)
-    }
+    this.pause()
+    setTimeout(this.play, this.delay)
   }
 
   play() {
-    this.slider.slickPlay()
+    if (this.slider) this.slider.slickPlay()
   }
   pause() {
-    this.slider.slickPause()
+    if (this.slider) this.slider.slickPause()
   }
 
   render() {
@@ -88,7 +87,7 @@ export default class PromotedProgramsCards extends Component {
                   <Link
                     to="/services/"
                     title={"Navigate to: " + this.props.actionButtonText}
-                    data-analytics-label="Promoted Services Component See All Button"
+                    data-analytics-label="Featured Services and Programs Component See All Button"
                   >
                     <CustomButton
                       color="primary"

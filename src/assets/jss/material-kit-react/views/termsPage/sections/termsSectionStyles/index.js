@@ -19,7 +19,7 @@ const termsSectionStyles = theme => ({
       "& li": {
         marginLeft: "0",
         marginBottom: getCalcRem(16),
-        displ: "none",
+        display: "none",
       },
     },
   },

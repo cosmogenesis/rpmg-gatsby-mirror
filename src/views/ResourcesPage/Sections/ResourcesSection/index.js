@@ -16,13 +16,14 @@ import cardStyles from "src/assets/jss/material-kit-react/components/cardStyle"
 const useStyles = makeStyles(styles)
 const useCardStyles = makeStyles(cardStyles)
 
-const initiateDownload = path => {
+const initiateDownload = (path, docName) => {
   if (!document) return
   const link = document.createElement("a")
   link.href = "https:" + path
   link.setAttribute("download", true)
   link.target = "_blank"
   link.rel = "noopener noreferrer"
+  link.setAttribute("data-analytics-label", "Download Document: " + docName)
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
@@ -47,6 +48,7 @@ const ResourcesSection = ({ pageData }) => {
     resources,
   } = pageData
 
+  console.log(downloadableDocuments)
   return (
     <Card className={classes.resourcesSection}>
       <CardHeader color="primary">{pageHeaderTitle}</CardHeader>
@@ -58,43 +60,54 @@ const ResourcesSection = ({ pageData }) => {
         )}
       >
         <GridContainer direction="column">
-          <GridItem>
-            <Typography variant="h4" gutterBottom>
-              {sectionHeaderTitle_downloads}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              {instructions.instructions}
-            </Typography>
-          </GridItem>
-          <GridItem>
-            <form className="rpmg-download-form" noValidate autoComplete="off">
-              <div className="rpmg-field-set">
-                <TextField
-                  id="rpmg-select-form"
-                  fullWidth
-                  select
-                  label="Select Form"
-                  value={curForm}
-                  onChange={handleSelectChange}
-                  helperText="Please select a topic"
+          {downloadableDocuments && downloadableDocuments.length > 0 && (
+            <>
+              <GridItem>
+                <Typography variant="h4" gutterBottom>
+                  {sectionHeaderTitle_downloads}
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {instructions.instructions}
+                </Typography>
+              </GridItem>
+              <GridItem>
+                <form
+                  className="rpmg-download-form"
+                  noValidate
+                  autoComplete="off"
                 >
-                  {downloadableDocuments.map((option, i) => (
-                    <MenuItem key={i} value={option.publicName}>
-                      <div
-                        style={{ width: "100%" }}
-                        role="button"
-                        onClick={() => {
-                          initiateDownload(option.file.file.url)
-                        }}
-                      >
-                        {option.publicName}
-                      </div>
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </div>
-            </form>
-          </GridItem>
+                  <div className="rpmg-field-set">
+                    <TextField
+                      id="rpmg-select-form"
+                      fullWidth
+                      select
+                      label="Select Form"
+                      value={curForm}
+                      onChange={handleSelectChange}
+                      helperText="Please select a topic"
+                    >
+                      {downloadableDocuments.map((option, i) => (
+                        <MenuItem key={i} value={option.publicName}>
+                          <div
+                            style={{ width: "100%" }}
+                            role="button"
+                            onClick={() => {
+                              initiateDownload(
+                                option.file.file.url,
+                                option.publicName
+                              )
+                            }}
+                          >
+                            {option.publicName}
+                          </div>
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </div>
+                </form>
+              </GridItem>
+            </>
+          )}
           <GridItem className="rpmg-resource-listing">
             <Typography variant="h4" gutterBottom>
               {sectionHeaderText_resources}
@@ -112,6 +125,9 @@ const ResourcesSection = ({ pageData }) => {
                           href={"tel:" + r.phone}
                           title={
                             "Open in phone application and call " + r.phone
+                          }
+                          data-analytics-label={
+                            "Reources link: call " + r.publicName
                           }
                           target="_blank"
                           rel="noopener noreferrer"
@@ -131,6 +147,9 @@ const ResourcesSection = ({ pageData }) => {
                         <a
                           href={r.url}
                           title={"Navigate to " + r.publicName}
+                          data-analytics-label={
+                            "Reources link: navigate to " + r.publicName
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
                         >

@@ -62,8 +62,11 @@ const FaqSection = ({ sectionHeader, faqs }) => {
                       handleExpandClick(i)
                     }}
                   >
-                    <ArrowDropDownIcon />
-                    <span>{faq.question}</span>
+                    <ArrowDropDownIcon data-analytics-label={faq.question} />
+
+                    <span data-analytics-label={faq.question}>
+                      {faq.question}
+                    </span>
                   </Typography>
                 </GridItem>
                 <Collapse

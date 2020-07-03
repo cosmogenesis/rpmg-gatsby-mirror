@@ -6,11 +6,6 @@ const servicesListSectionStyles = theme => ({
   servicesListSection: {
     "& .cardBody": {
       padding: "0",
-      "& .rpmg-list-wrapper li": {
-        "&:nth-child(odd)": {
-          paddingRight: "1rem",
-        },
-      },
     },
   },
 

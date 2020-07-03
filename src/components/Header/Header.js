@@ -77,7 +77,11 @@ export default function Header(props) {
   const brandComponent = (
     <IconButton className="rpmg-logo-wrapper">
       <Hidden only={["xs"]}>
-        <Link to="/" title="Go to Home page">
+        <Link
+          to="/"
+          title={"Navigate to: Home Page"}
+          data-analytics-label="Site Header Logo Link"
+        >
           <img
             className="rpmg-logo-lg"
             src={logoLarge}
@@ -108,7 +112,9 @@ export default function Header(props) {
           color="inherit"
           aria-label="open drawer"
           onClick={handleDrawerToggle}
-          alt="Toggle Menu"
+          alt="Open Main Menu"
+          title="Open Main Menu"
+          data-analytics-label="Open Main Menu"
         >
           <Menu />
         </IconButton>

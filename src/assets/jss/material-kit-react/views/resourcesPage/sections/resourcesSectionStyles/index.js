@@ -35,9 +35,13 @@ const resourcesSectionStyles = theme => ({
         padding: "0",
         "& li": {
           paddingRight: "0 !important",
-          listStyle: "none/",
+          listStyle: "none",
           display: "flex",
           marginBottom: theme.spacing(2),
+          minWidth: "100%",
+          "&:nth-child(odd)": {
+            marginLeft: "0",
+          },
         },
       },
 

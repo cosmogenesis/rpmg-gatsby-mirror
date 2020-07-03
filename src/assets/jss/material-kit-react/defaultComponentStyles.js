@@ -43,6 +43,15 @@ const defaultComponentStyles = {
     },
     "& .MuiCollapse-container": {
       width: "100%",
+      "& li": {
+        marginLeft: "0 !important",
+        [theme.breakpoints.up("md")]: {
+          maxWidth: "45%",
+          "&:nth-child(even)": {
+            marginLeft: "5% !important",
+          },
+        },
+      },
     },
     "& .rpmg-list-wrapper, & ul": {
       width: "100%",
@@ -56,8 +65,9 @@ const defaultComponentStyles = {
         lineHeight: "inherit",
         textTransform: "capitalize",
         color: primaryTextColor,
-        marginLeft: "-20px",
+        marginLeft: "-20px !important",
         marginBottom: ".25rem",
+        maxWidth: "100%",
         width: "100%",
         flex: "none",
         fontSize: defaultMobileFontSize,
@@ -74,15 +84,17 @@ const defaultComponentStyles = {
         fontSize: defaultMobileFontSize,
         [theme.breakpoints.up("md")]: {
           fontSize: defaultDesktopFontSize,
+          paddingRight: "1rem",
+          maxWidth: "45%",
+          "&:nth-child(odd)": {
+            marginLeft: "5%",
+          },
         },
         [theme.breakpoints.down("sm")]: {
           flex: "none",
           marginLeft: "1rem",
         },
 
-        "&:nth-child(even)": {
-          paddingRight: "1rem",
-        },
         "& .MuiListItemText-root": {
           margin: "0 0 0 -5px",
         },

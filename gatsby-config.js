@@ -5,7 +5,8 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Riverside Psychiatric Medical Group`,
-    siteRootURL: `https://www.rivpsych.com`,
+    siteUrl: process.env.SITE_URL,
+    siteRootURL: process.env.SITE_URL,
     description: `This field is not used. The value is in the CMS`,
     author: `@gary_mcdaniel`,
   },
@@ -49,6 +50,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-material-ui`,
       options: {
@@ -66,6 +68,21 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/favicon.ico`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: process.env.SITE_URL,
+        sitemap: process.env.SITE_URL + "/sitemap.xml",
+        env: {
+          development: {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
+          },
+          production: {
+            policy: [{ userAgent: "*", allow: "/" }],
+          },
+        },
       },
     },
     {

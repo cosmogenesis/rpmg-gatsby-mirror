@@ -64,6 +64,7 @@ const AboutSection = ({
                   "https://maps.google.com/?q" + encodeURIComponent(address)
                 }
                 title="Open address in map application"
+                data-analytics-label="About Us section open address in map application"
                 target="_blank"
                 rel="noopener"
               >
@@ -73,6 +74,7 @@ const AboutSection = ({
                     encodeURIComponent(address)
                   }
                   title="Open address in map application"
+                  data-analytics-label="About Us section open address in map application"
                   target="_blank"
                   rel="noopener"
                 >
@@ -84,6 +86,7 @@ const AboutSection = ({
               <a
                 href={"tel:" + phone}
                 title={"Open in phone application and call " + phone}
+                data-analytics-label="About Us section link to call RPMG"
                 target="_blank"
                 rel="noopener"
               >
@@ -91,7 +94,11 @@ const AboutSection = ({
               </a>
             </Typography>
             <Typography variant="body1" gutterBottom>
-              <Link to="/faq" title="Go to contact us page">
+              <Link
+                to="/faq"
+                title="Navigate to: contact us page"
+                data-analytics-label="About Us section link to contact us page"
+              >
                 Contact Us
               </Link>
             </Typography>
