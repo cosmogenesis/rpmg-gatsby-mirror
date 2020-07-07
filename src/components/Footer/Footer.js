@@ -37,7 +37,7 @@ export default function Footer(props) {
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="/terms"
+                href="/terms/"
                 className={classes.block}
                 title="Navigate to Terms page"
                 data-analytics-label="Footer Terms Link"
@@ -47,7 +47,7 @@ export default function Footer(props) {
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="/privacy"
+                href="/privacy/"
                 className={classes.block}
                 title="Navigate to Privacy page"
                 data-analytics-label="Footer Privacy Link"
